@@ -940,7 +940,10 @@ export default function Home() {
                     </li>
                     <li>
                       <div className="icon"><i className="fas fa-phone"></i></div>
-                      <div className="content"><strong>Phone:</strong> <a href="tel:+1 (780) 297-0185">+1 (780) 297-0185</a></div>
+                      <div className="content"><strong>Phone:</strong> <a href="tel:+1 (780) 297-0185">+1 (780) 297-0185</a><br/>
+                       <a href="tel:+1 (403) 830-0579">+1 (403) 830-0579</a>
+                      
+                      </div>
                     </li>
                   </ul>
                 </div>
@@ -950,7 +953,7 @@ export default function Home() {
           <div className="footer-bottom">
             <div className="row">
               <div className="col-lg-6">
-                <p>&copy; Copyright Western Discover Construction Ltd. 2026. All right reserved.</p>
+                <p>&copy; Copyright Adesco Western Ranch Ltd. 2026. All right reserved.</p>
               </div>
               <div className="col-lg-6 text-end">
                 <p>Developed by <span style={{color: "#e74c3c"}}><a href="https://baninfotech.com" target="_blank" rel="noopener noreferrer">Ban-infotech Solutions</a></span></p>
