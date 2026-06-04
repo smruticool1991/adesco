@@ -12,7 +12,14 @@ function Navbar() {
   const toggle = (name: string) =>
     setOpenDropdown((prev) => (prev === name ? null : name));
 
-  const leftMenus = [
+  interface MenuItem {
+    key: string;
+    label: string;
+    href: string;
+    items: { label: string; href: string }[];
+  }
+
+  const leftMenus: MenuItem[] = [
     {
       key: "home",
       label: "Home", href: "/",
@@ -30,7 +37,7 @@ function Navbar() {
     },
   ];
 
-  const rightMenus = [
+  const rightMenus: MenuItem[] = [
     {
       key: "brands-products",
       label: "Brands & Products", href: "/brands-products",
