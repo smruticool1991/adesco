@@ -65,7 +65,12 @@ function Navbar() {
           z-index: 999;
           background: #fff;
           box-shadow: 0 2px 20px rgba(0,0,0,.08);
-          padding: 0 30px;
+        }
+        .rn-container {
+          max-width: 1320px;
+          width: 100%;
+          margin: 0 auto;
+          padding: 0 20px;
         }
         .collapse {
           visibility: visible;
@@ -74,8 +79,7 @@ function Navbar() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          max-width: 1320px;
-          margin: 0 auto;
+          gap: 20px;
           height: 80px;
         }
         /* ── Left / Right nav groups ── */
@@ -86,9 +90,8 @@ function Navbar() {
           margin: 0;
           padding: 0;
           gap: 0;
-          flex: 1;
         }
-        .rn-nav.right { justify-content: flex-end; }
+        .rn-nav.right { }
         .rn-nav li { position: relative; }
         .rn-nav li > a {
           display: block;
@@ -258,7 +261,8 @@ function Navbar() {
 
       <header>
         <nav className="rn-navbar">
-          <div className="rn-navbar-inner">
+          <div className="rn-container">
+            <div className="rn-navbar-inner">
 
             {/* LEFT MENU */}
             <ul className="rn-nav">
@@ -282,7 +286,7 @@ function Navbar() {
             </a>
 
             {/* RIGHT MENU + ICONS */}
-            <div style={{ display: "flex", alignItems: "center", flex: 1, justifyContent: "flex-end" }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }}>
               <ul className="rn-nav right">
                 {rightMenus.map((menu) => (
                   <li key={menu.key}>
@@ -345,6 +349,7 @@ function Navbar() {
             <button className="rn-hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
               <i className={mobileOpen ? "fa fa-times" : "fa fa-bars"}></i>
             </button>
+            </div>
           </div>
         </nav>
 
@@ -440,7 +445,7 @@ export default function Home() {
               <div className="thumb">
                 <img src="/assets/img/about.webp" alt="Adesco Western Ranch" />
                 <div className="sub-item">
-                  <img src="/assets/img/1.jpg" alt="Black Farmer in Canada" />
+                  <img src="/assets/img/farmer.webp" alt="Black Farmer in Canada" />
                 </div>
               </div>
             </div>
@@ -815,15 +820,15 @@ export default function Home() {
                 <ul>
                   <li className="wow fadeInUp">
                     <div className="icon"><i className="fas fa-phone-alt"></i></div>
-                    <div className="content"><h5 className="title">Hotline</h5><a href="tel:+4733378901">+4733378901</a></div>
+                    <div className="content"><h5 className="title">Hotline</h5><a href="tel:+1 (780) 297-0185">+1 (780) 297-0185</a></div>
                   </li>
                   <li className="wow fadeInUp" data-wow-delay="300ms">
                     <div className="icon"><i className="fas fa-map-marker-alt"></i></div>
-                    <div className="info"><h5 className="title">Our Location</h5><p>55 Main Street, The Grand Avenue 2nd Block, <br /> New York City</p></div>
+                    <div className="info"><h5 className="title">Our Location</h5><p>51217 Range road, 63 Tomahawk, Alberta T0E 2H0 Canada</p></div>
                   </li>
                   <li className="wow fadeInUp" data-wow-delay="500ms">
                     <div className="icon"><i className="fas fa-envelope-open-text"></i></div>
-                    <div className="info"><h5 className="title">Official Email</h5><a href="mailto:info@agrul.com">info@agrul.com</a></div>
+                    <div className="info"><h5 className="title">Official Email</h5><a href="mailto:tim.adekola1@gmail.com">tim.adekola1@gmail.com</a></div>
                   </li>
                 </ul>
               </div>
@@ -927,15 +932,15 @@ export default function Home() {
                   <ul>
                     <li>
                       <div className="icon"><i className="fas fa-home"></i></div>
-                      <div className="content"><strong>Address:</strong> 5919 Trussville Crossings Pkwy, Birmingham</div>
+                      <div className="content"><strong>Address:</strong>51217 Range road, 63 Tomahawk, Alberta T0E 2H0 Canada</div>
                     </li>
                     <li>
                       <div className="icon"><i className="fas fa-envelope"></i></div>
-                      <div className="content"><strong>Email:</strong> <a href="mailto:info@validtheme.com">info@adesco.com</a></div>
+                      <div className="content"><strong>Email:</strong> <a href="mailto:tim.adekola1@gmail.com">tim.adekola1@gmail.com</a></div>
                     </li>
                     <li>
                       <div className="icon"><i className="fas fa-phone"></i></div>
-                      <div className="content"><strong>Phone:</strong> <a href="tel:2151234567">+123 34598768</a></div>
+                      <div className="content"><strong>Phone:</strong> <a href="tel:+1 (780) 297-0185">+1 (780) 297-0185</a></div>
                     </li>
                   </ul>
                 </div>
@@ -945,14 +950,10 @@ export default function Home() {
           <div className="footer-bottom">
             <div className="row">
               <div className="col-lg-6">
-                <p>&copy; Copyright 2026. All Rights Reserved</p>
+                <p>&copy; Copyright Western Discover Construction Ltd. 2026. All right reserved.</p>
               </div>
               <div className="col-lg-6 text-end">
-                <ul>
-                  <li><a href="#">Terms</a></li>
-                  <li><a href="#">Privacy</a></li>
-                  <li><a href="#">Support</a></li>
-                </ul>
+                <p>Developed by <span style={{color: "#e74c3c"}}><a href="https://baninfotech.com" target="_blank" rel="noopener noreferrer">Ban-infotech Solutions</a></span></p>
               </div>
             </div>
           </div>
