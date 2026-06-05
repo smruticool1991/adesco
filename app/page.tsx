@@ -105,6 +105,25 @@ function Navbar() {
           text-decoration: none;
         }
         .rn-nav li > a:hover { color: var(--color-primary, #4a7c59); }
+        /* ── Book Now Button ── */
+        .book-now-btn {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          padding: 10px 20px;
+          background: var(--color-primary, #4a7c59);
+          color: #fff;
+          border-radius: 5px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 14px;
+          transition: background .3s;
+          margin-left: 10px;
+        }
+        .book-now-btn:hover {
+          background: #3d6a4a;
+          color: #fff;
+        }
         /* ── Dropdown ── */
         .rn-dropdown {
           position: absolute;
@@ -820,7 +839,10 @@ export default function Home() {
                 <ul>
                   <li className="wow fadeInUp">
                     <div className="icon"><i className="fas fa-phone-alt"></i></div>
-                    <div className="content"><h5 className="title">Hotline</h5><a href="tel:+1 (780) 297-0185">+1 (780) 297-0185</a></div>
+                    <div className="content"><h5 className="title">Hotline</h5>
+                       <a href="tel:+1 (780) 297-0185">+1 (780) 297-0185</a><br/>
+                        <a href="tel: +1 (403) 830-0579"> +1 (403) 830-0579</a>
+                    </div>
                   </li>
                   <li className="wow fadeInUp" data-wow-delay="300ms">
                     <div className="icon"><i className="fas fa-map-marker-alt"></i></div>
@@ -956,7 +978,7 @@ export default function Home() {
                 <p>&copy; Copyright Adesco Western Ranch Ltd. 2026. All right reserved.</p>
               </div>
               <div className="col-lg-6 text-end">
-                <p>Developed by <span style={{color: "#e74c3c"}}><a href="https://baninfotech.com" target="_blank" rel="noopener noreferrer">Ban-infotech Solutions</a></span></p>
+                <p>Developed by <span style={{color: "#e74c3c"}}><a href="https://baninfotech.com" target="_blank" rel="noopener noreferrer" style={{color: "#e74c3c"}}>Ban-infotech Solutions</a></span></p>
               </div>
             </div>
           </div>
