@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /* ─────────────────────────────────────────────
    NAVBAR  –  Center-logo | Left menu | Right menu
@@ -8,9 +8,19 @@ import { useState } from "react";
 function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggle = (name: string) =>
     setOpenDropdown((prev) => (prev === name ? null : name));
+
+  // Handle scroll event
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   interface MenuItem {
     key: string;
@@ -60,11 +70,25 @@ function Navbar() {
     <>
       <style>{`
         .rn-navbar {
-          position: sticky;
+          position: fixed;
           top: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
           z-index: 999;
+          background: transparent;
+          box-shadow: none;
+          transition: all 0.3s ease;
+        }
+        .rn-navbar.scrolled {
           background: #fff;
           box-shadow: 0 2px 20px rgba(0,0,0,.08);
+        }
+        .rn-navbar.scrolled .rn-nav li > a {
+          color: #232323;
+        }
+        .rn-navbar.scrolled .rn-icons li > a {
+          color: #232323;
         }
         .rn-container {
           max-width: 1320px;
@@ -98,7 +122,7 @@ function Navbar() {
           padding: 28px 18px;
           font-size: 17px;
           font-weight: 700;
-          color: #232323;
+          color: #fff;
           text-transform: capitalize;
           white-space: nowrap;
           transition: color .2s;
@@ -173,7 +197,7 @@ function Navbar() {
           flex-shrink: 0;
         }
         .rn-icons li > a {
-          color: #232323;
+          color: #fff;
           font-size: 18px;
           padding: 4px;
           position: relative;
@@ -236,8 +260,12 @@ function Navbar() {
           border: none;
           font-size: 24px;
           cursor: pointer;
-          color: #232323;
+          color: #fff;
           padding: 4px 8px;
+          transition: color .2s;
+        }
+        .rn-navbar.scrolled .rn-hamburger {
+          color: #232323;
         }
         /* ── Mobile drawer ── */
         .rn-mobile-menu {
@@ -276,121 +304,56 @@ function Navbar() {
           .rn-hamburger { display: block !important; }
           .rn-logo { padding: 0; }
         }
+        /* Add padding top to body to account for fixed navbar */
+        header {
+          margin-bottom: 0;
+        }
+        header a{
+           font-size: 16px!important;
+        }
       `}</style>
 
       <header>
-        <nav className="rn-navbar">
-          <div className="rn-container">
-            <div className="rn-navbar-inner">
-
-            {/* LEFT MENU */}
-            <ul className="rn-nav">
-              {leftMenus.map((menu) => (
-                <li key={menu.key}>
-                  <a href={menu.href}>{menu.label}{menu.items.length > 0 && " ▾"}</a>
-                  {menu.items.length > 0 && (
-                    <ul className="rn-dropdown">
-                      {menu.items.map((item) => (
-                        <li key={item.href}><a href={item.href}>{item.label}</a></li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-
-            {/* CENTER LOGO */}
-            <a className="rn-logo" href="/">
-              <img src="/assets/img/logo.png" alt="Agrul Logo" />
-            </a>
-
-            {/* RIGHT MENU + ICONS */}
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 0 }}>
-              <ul className="rn-nav right">
-                {rightMenus.map((menu) => (
-                  <li key={menu.key}>
-                    <a href="#">{menu.label}{menu.items.length > 0 && " ▾"}</a>
-                    {menu.items.length > 0 && (
-                      <ul className="rn-dropdown">
-                        {menu.items.map((item) => (
-                          <li key={item.href}><a href={item.href}>{item.label}</a></li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                ))}
-              </ul>
-
-              {/* Icons */}
-              <ul className="rn-icons" style={{ display: "flex", alignItems: "center", gap: 20, listStyle: "none", padding: 0, marginLeft: 16 }}>
-                {/* Cart */}
-                <li style={{ position: "relative" }}>
-                  <a href="#" style={{ position: "relative" }}>
-                    <i className="far fa-shopping-cart"></i>
-                    <span className="badge">3</span>
-                  </a>
-                  <div className="rn-cart-dropdown">
-                    <div className="rn-cart-item">
-                      <img src="/assets/img/products/1.png" alt="Product" />
-                      <div>
-                        <h6>Delica omtantur</h6>
-                        <p>2x — <strong>$99.99</strong></p>
-                      </div>
-                    </div>
-                    <div className="rn-cart-item">
-                      <img src="/assets/img/products/2.png" alt="Product" />
-                      <div>
-                        <h6>Omnes ocurreret</h6>
-                        <p>1x — <strong>$33.33</strong></p>
-                      </div>
-                    </div>
-                    <div className="rn-cart-total"><span>Total</span><span>$133.32</span></div>
-                    <div className="rn-cart-btns">
-                      <a href="#">Cart</a>
-                      <a href="#">Checkout</a>
-                    </div>
-                  </div>
-                </li>
-                {/* Search */}
-                <li><a href="#"><i className="far fa-search"></i></a></li>
-                {/* Sidebar bars */}
-                <li>
-                  <a href="#" style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-                    <span style={{ display: "block", width: 22, height: 2, background: "#232323", borderRadius: 2 }}></span>
-                    <span style={{ display: "block", width: 22, height: 2, background: "#232323", borderRadius: 2 }}></span>
-                    <span style={{ display: "block", width: 16, height: 2, background: "#232323", borderRadius: 2 }}></span>
-                  </a>
-                </li>
-              </ul>
+        <nav className="navbar mobile-sidenav nav-blur navbar-sticky navbar-default validnavs white navbar-fixed no-background">
+          <div className="container-full d-flex justify-content-between align-items-center">
+            <div className="navbar-header">
+              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <i className="fa fa-bars"></i>
+              </button>
+              <a className="navbar-brand" href="/" data-discover="true">
+                <img className="logo logo-display" alt="Logo" src="/assets/img/logo-light.jpeg" style={{width: "100px"}}/>
+                <img className="logo logo-scrolled" alt="Logo" src="/assets/img/logo.png" style={{height: "100px"}}/>
+              </a>
             </div>
+            <div className="collapse navbar-collapse collapse-mobile" id="navbar-menu">
+              <img alt="Logo" src="/assets/img/logo.png"/>
+              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                <i className="fa fa-times"></i>
+              </button>
+              <ul className="nav navbar-nav navbar-right navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+                <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Home</a>
+                </li>
+                <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">About us</a>
+                </li>
+                <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/project" data-discover="true">Who We Are</a>
+                </li>
+                <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Brands & Products</a>
+                </li>
+                <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Blog</a>
+                </li>
+                <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Contact us</a>
+                </li>
+               </ul>
+              </div>
+              <div className="attr-right"><div className="attr-nav"><ul><li className="wishlist"><a href="/home-3" data-discover="true"><i className="fas fa-heart"></i></a></li><li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true"><i className="far fa-shopping-cart"></i><span className="badge">0</span></a><ul className="dropdown-menu cart-list"><li className="total"><p>Your cart is empty.</p></li></ul></li></ul></div></div></div><div className="overlay-screen"></div></nav>
+              </header>
 
-            {/* MOBILE HAMBURGER */}
-            <button className="rn-hamburger" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-              <i className={mobileOpen ? "fa fa-times" : "fa fa-bars"}></i>
-            </button>
-            </div>
-          </div>
-        </nav>
-
-        {/* MOBILE DRAWER */}
-        <div className={`rn-mobile-menu${mobileOpen ? " open" : ""}`}>
-          <ul>
-            {[...leftMenus, ...rightMenus].map((menu) => (
-              <li key={menu.key}>
-                <button onClick={() => toggle(menu.key)}>
-                  {menu.label}
-                  <span>{openDropdown === menu.key ? "▲" : "▼"}</span>
-                </button>
-                <ul className={`rn-mobile-submenu${openDropdown === menu.key ? " open" : ""}`}>
-                  {menu.items.map((item) => (
-                    <li key={item.href}><a href={item.href}>{item.label}</a></li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </header>
     </>
   );
 }
@@ -405,22 +368,20 @@ export default function Home() {
       <Navbar />
 
       {/* ── BANNER ── */}
-      <div className="banner-area navigation-circle text-light banner-style-one zoom-effect overflow-hidden">
+      <div className="banner-area navigation-circle text-light text-center banner-style-three-area zoom-effect overflow-hidden">
         <div className="banner-fade">
           <div className="swiper-wrapper">
 
             {/* Slide 1 */}
-            <div className="swiper-slide banner-style-one">
+            <div className="swiper-slide banner-style-three">
               <div className="banner-thumb bg-cover shadow dark" style={{ background: "url(/assets/img/banner/banner1.webp)" }}></div>
               <div className="container">
                 <div className="row align-center">
-                  <div className="col-xl-7">
+                  <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h4>Regenerative Agriculture</h4>
-                      <h2><strong>Adesco Western Ranch</strong> Building Sustainable Futures</h2>
-                      <p>A Black-led farm in Alberta dedicated to fostering educational opportunities, sustainable practices, and community empowerment through innovative agricultural solutions.</p>
+                      <h2>Ultimate Products <br /> & Customers</h2>
                       <div className="button">
-                        <a className="btn btn-theme secondary btn-md radius animation" href="#about">Learn More</a>
+                        <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
                       </div>
                     </div>
                   </div>
@@ -429,17 +390,15 @@ export default function Home() {
             </div>
 
             {/* Slide 2 */}
-            <div className="swiper-slide banner-style-one">
-              <div className="banner-thumb bg-cover shadow dark" style={{ background: "url(/assets/img/banner/banner2.webp)" }}></div>
+            <div className="swiper-slide banner-style-three">
+              <div className="banner-thumb bg-cover shadow dark" style={{ background: "url(assets/img/banner/banner2.webp)" }}></div>
               <div className="container">
                 <div className="row align-center">
-                  <div className="col-xl-7">
+                  <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h4>Community Empowerment</h4>
-                      <h2><strong>Food Autonomy</strong> and Social Justice</h2>
-                      <p>Located in Tomahawk, Parkland County, Alberta, we challenge systemic barriers and foster resilience through education, collaboration, and inclusive agricultural practices.</p>
+                      <h2>Naturael & Organic <br /> Farm Store</h2>
                       <div className="button">
-                        <a className="btn btn-theme secondary btn-md radius animation" href="#mission">Discover Our Mission</a>
+                        <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
                       </div>
                     </div>
                   </div>
