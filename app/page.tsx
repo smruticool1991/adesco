@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 
 /* ─────────────────────────────────────────────
    NAVBAR  –  Center-logo | Left menu | Right menu
@@ -331,26 +332,37 @@ function Navbar() {
                 <i className="fa fa-times"></i>
               </button>
               <ul className="nav navbar-nav navbar-right navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                <li className="dropdown">
-                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Home</a>
+                <li>
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/" data-discover="true">Home</a>
                 </li>
-                <li className="dropdown">
-                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">About us</a>
-                </li>
-                <li className="dropdown">
+                <li>
                   <a className="dropdown-toggle" data-toggle="dropdown" href="/project" data-discover="true">Who We Are</a>
                 </li>
-                <li className="dropdown">
+                <li>
                   <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Brands & Products</a>
                 </li>
                 <li className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Initiatives</a>
+                  <ul className="dropdown-menu">
+                    <li><a href="/home-3" data-discover="true">Goat Banking</a></li>
+                    <li><a href="/home-3" data-discover="true">Cattle Banking</a></li>
+                    <li><a href="/home-3" data-discover="true">Cultural Seeds</a></li>
+                  </ul>
+                </li>
+                <li>
                   <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Blog</a>
                 </li>
-                <li className="dropdown">
+                <li>
                   <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Contact us</a>
+                </li>
+                <li>
+                  <div className="button" style={{marginLeft: "30px"}}>
+                    <a className="btn btn-theme btn-md radius animation" style={{backgroundColor: "#fc4b00"}} href="#about">Donate</a>
+                  </div>
                 </li>
                </ul>
               </div>
+              
               <div className="attr-right"><div className="attr-nav"><ul><li className="wishlist"><a href="/home-3" data-discover="true"><i className="fas fa-heart"></i></a></li><li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true"><i className="far fa-shopping-cart"></i><span className="badge">0</span></a><ul className="dropdown-menu cart-list"><li className="total"><p>Your cart is empty.</p></li></ul></li></ul></div></div></div><div className="overlay-screen"></div></nav>
               </header>
 
@@ -361,7 +373,40 @@ function Navbar() {
 /* ─────────────────────────────────────────────
    HOME PAGE
 ───────────────────────────────────────────── */
+const galleryItems = [
+  { tag: "Livestock",    title: "Free-Range Chickens",  src: "/assets/img/product/product1.webp" },
+  { tag: "Cattle",       title: "Jersey Cow Herd",      src: "/assets/img/product/product2.webp" },
+  { tag: "Agriculture",  title: "Field Cultivation",    src: "/assets/img/product/product3.webp" },
+  { tag: "Harvest",      title: "Fresh Produce",         src: "/assets/img/product/product4.webp" },
+  { tag: "Training",     title: "Youth Farm Programs",  src: "/assets/img/gallery/youth.webp" },
+  { tag: "Sustainability", title: "Regenerative Land", src: "/assets/img/gallery/regenerative.webp" },
+  { tag: "Community",    title: "Farm Workshops",        src: "/assets/img/gallery/farm.webp " },
+  { tag: "Growth",       title: "Seasonal Crops",        src: "/assets/img/gallery/crops.webp" },
+];
+
 export default function Home() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  const openLightbox = (index: number) => setLightboxIndex(index);
+  const closeLightbox = () => setLightboxIndex(null);
+  const prevImage = () => setLightboxIndex((i) => (i !== null ? (i - 1 + galleryItems.length) % galleryItems.length : null));
+  const nextImage = () => setLightboxIndex((i) => (i !== null ? (i + 1) % galleryItems.length : null));
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") prevImage();
+      if (e.key === "ArrowRight") nextImage();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <>
       {/* ── NAVBAR ── */}
@@ -380,8 +425,13 @@ export default function Home() {
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
                       <h2>Ultimate Products <br /> & Customers</h2>
-                      <div className="button">
-                        <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                      <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
+                          <div className="button">
+                            <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                          </div>
+                          <div className="button">
+                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="#about">Become a Farmer</a>
+                          </div>
                       </div>
                     </div>
                   </div>
@@ -396,9 +446,36 @@ export default function Home() {
                 <div className="row align-center">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h2>Naturael & Organic <br /> Farm Store</h2>
-                      <div className="button">
-                        <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                      <h2>Natural & Organic <br /> Farm Store</h2>
+                      <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
+                          <div className="button">
+                            <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                          </div>
+                          <div className="button">
+                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="#about">Become a Farmer</a>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Slide 3 */}
+            <div className="swiper-slide banner-style-three">
+              <div className="banner-thumb bg-cover shadow dark" style={{ background: "url(assets/img/banner/banner03.webp)" }}></div>
+              <div className="container">
+                <div className="row align-center">
+                  <div className="col-lg-10 offset-lg-1">
+                    <div className="content">
+                      <h2> Fresh & Pure <br /> Dairy Farm </h2>
+                      <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
+                          <div className="button">
+                            <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                          </div>
+                          <div className="button">
+                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="#about">Become a Farmer</a>
+                          </div>
                       </div>
                     </div>
                   </div>
@@ -430,7 +507,7 @@ export default function Home() {
             <div className="col-xl-7 col-lg-6 about-style-one">
               <div className="row align-center">
                 <div className="col-xl-7 col-lg-12">
-                  <h2 className="heading">Adesco Western Ranch <br /> Established 2018</h2>
+                  <h2 className="heading">Adesco Western Ranch <br /> Established in 2018</h2>
                   <p>Established six years ago in Canada by a dynamic young and resilient African Canadian farmer, our farm is located in the close-knit hamlet of Tomahawk, Parkland County, Alberta, along Highway 759 northeast of Drayton Valley. Our mission transcends traditional farming, serving as a form of resistance against historical marginalization and reclaiming narratives and spaces traditionally inaccessible to marginalized communities.</p>
                   <ul className="check-solid-list mt-20">
                     <li>Regenerative agricultural practices and land stewardship</li>
@@ -516,20 +593,83 @@ export default function Home() {
         <div className="container">
           <div className="row">
             <div className="col-xl-10 offset-xl-1 mb-50 mb-xs-30">
-              <h2 className="mask-text">Our Mission: Equity, Resilience & Sustainability</h2>
+              <h2 className="mask-text">Our Mission: Equity, Resilience And Sustainability</h2>
             </div>
             <div className="product-list-box">
               {[
-                { icon: "1.png", name: "Education" },
-                { icon: "2.png", name: "Sustainability" },
-                { icon: "3.png", name: "Equity" },
-                { icon: "4.png", name: "Community" },
-                { icon: "5.png", name: "Innovation" },
-                { icon: "6.png", name: "Resilience" },
+                {
+                  name: "Education",
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="none">
+                      <path d="M32 8L4 22l28 14 28-14L32 8z" fill="#f5c842" stroke="#333" strokeWidth="2" strokeLinejoin="round"/>
+                      <path d="M4 22v18" stroke="#333" strokeWidth="2" strokeLinecap="round"/>
+                      <path d="M14 28v12a18 7 0 0 0 36 0V28" stroke="#333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <circle cx="4" cy="42" r="2.5" fill="#f5c842" stroke="#333" strokeWidth="1.5"/>
+                    </svg>
+                  ),
+                },
+                {
+                  name: "Sustainability",
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="none">
+                      <path d="M32 56C18 56 8 46 8 32c0-10 6-19 15-23-2 6-1 14 4 19 2-8 8-14 16-16-3 5-3 12 0 17 5-4 9-11 9-18 5 5 8 12 8 19 0 14-10 26-28 26z" fill="#4caf50" stroke="#2e7d32" strokeWidth="2" strokeLinejoin="round"/>
+                      <path d="M32 56V38" stroke="#2e7d32" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                },
+                {
+                  name: "Equity",
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="none">
+                      <line x1="32" y1="10" x2="32" y2="54" stroke="#555" strokeWidth="2.5" strokeLinecap="round"/>
+                      <line x1="14" y1="18" x2="50" y2="18" stroke="#555" strokeWidth="2.5" strokeLinecap="round"/>
+                      <path d="M14 18l-8 16a12 6 0 0 0 16 0L14 18z" fill="#e8c84a" stroke="#b8960a" strokeWidth="1.8" strokeLinejoin="round"/>
+                      <path d="M50 18l-8 16a12 6 0 0 0 16 0L50 18z" fill="#e8c84a" stroke="#b8960a" strokeWidth="1.8" strokeLinejoin="round"/>
+                      <rect x="24" y="52" width="16" height="4" rx="2" fill="#555"/>
+                    </svg>
+                  ),
+                },
+                {
+                  name: "Community",
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="none">
+                      <circle cx="32" cy="20" r="8" fill="#64b5f6" stroke="#1565c0" strokeWidth="2"/>
+                      <path d="M16 52c0-8.8 7.2-16 16-16s16 7.2 16 16" stroke="#1565c0" strokeWidth="2" strokeLinecap="round"/>
+                      <circle cx="14" cy="22" r="5.5" fill="#90caf9" stroke="#1565c0" strokeWidth="1.5"/>
+                      <path d="M4 48c0-5.5 4.5-10 10-10" stroke="#1565c0" strokeWidth="1.5" strokeLinecap="round"/>
+                      <circle cx="50" cy="22" r="5.5" fill="#90caf9" stroke="#1565c0" strokeWidth="1.5"/>
+                      <path d="M60 48c0-5.5-4.5-10-10-10" stroke="#1565c0" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                },
+                {
+                  name: "Innovation",
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="none">
+                      <path d="M32 10c-10 0-18 8-18 18 0 7 4 13 10 16v4h16v-4c6-3 10-9 10-16 0-10-8-18-18-18z" fill="#fff176" stroke="#f9a825" strokeWidth="2" strokeLinejoin="round"/>
+                      <rect x="24" y="48" width="16" height="4" rx="2" fill="#f9a825"/>
+                      <rect x="26" y="52" width="12" height="3" rx="1.5" fill="#f57f17"/>
+                      <line x1="32" y1="10" x2="32" y2="6" stroke="#f9a825" strokeWidth="2" strokeLinecap="round"/>
+                      <line x1="50" y1="28" x2="54" y2="28" stroke="#f9a825" strokeWidth="2" strokeLinecap="round"/>
+                      <line x1="14" y1="28" x2="10" y2="28" stroke="#f9a825" strokeWidth="2" strokeLinecap="round"/>
+                      <line x1="46" y1="14" x2="49" y2="11" stroke="#f9a825" strokeWidth="2" strokeLinecap="round"/>
+                      <line x1="18" y1="14" x2="15" y2="11" stroke="#f9a825" strokeWidth="2" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                },
+                {
+                  name: "Resilience",
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="60" height="60" fill="none">
+                      <path d="M32 8L10 18v16c0 14 10 24 22 28 12-4 22-14 22-28V18L32 8z" fill="#ef9a9a" stroke="#c62828" strokeWidth="2" strokeLinejoin="round"/>
+                      <path d="M22 32l8 8 12-14" stroke="#c62828" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ),
+                },
               ].map((p) => (
                 <div className="product-list-item" key={p.name}>
                   <a href="#">
-                    <img src={`/assets/img/icon/${p.icon}`} alt="Icon" />
+                    <span style={{ display: "flex", justifyContent: "center", marginBottom: "8px" }}>{p.svg}</span>
                     <h5>{p.name}</h5>
                   </a>
                 </div>
@@ -653,47 +793,303 @@ export default function Home() {
       </div>
 
       {/* ── GALLERY ── */}
-      <div className="gallery-style-one-area default-padding-top">
+      <div className="farm-gallery-section">
+        <style>{`
+          .farm-gallery-section {
+            padding: 80px 0 90px;
+            background: #f4f7f4;
+          }
+          .farm-gallery-section .section-head {
+            text-align: center;
+            margin-bottom: 48px;
+          }
+          .farm-gallery-section .section-head .sub-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #4a7c59;
+            margin-bottom: 10px;
+          }
+          .farm-gallery-section .section-head h2 {
+            font-size: clamp(28px, 4vw, 42px);
+            font-weight: 800;
+            color: #1a2e1a;
+            margin: 0 0 14px;
+          }
+          .farm-gallery-section .section-head .divider-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #4a7c59, #82c45a);
+            margin: 0 auto;
+            border-radius: 2px;
+          }
+
+          /* ── Grid ── */
+          .farm-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 260px);
+            gap: 14px;
+            padding: 0 20px;
+          }
+          @media (max-width: 1024px) {
+            .farm-grid {
+              grid-template-columns: repeat(2, 1fr);
+              grid-template-rows: repeat(4, 240px);
+            }
+          }
+          @media (max-width: 600px) {
+            .farm-grid {
+              grid-template-columns: 1fr;
+              grid-template-rows: auto;
+              gap: 10px;
+            }
+            .farm-grid .farm-card { height: 220px; }
+          }
+
+          /* ── Card ── */
+          .farm-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.13);
+            transition: box-shadow 0.35s ease, transform 0.35s ease;
+          }
+          .farm-card:hover {
+            box-shadow: 0 12px 40px rgba(74,124,89,0.30);
+            transform: translateY(-4px);
+          }
+          .farm-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          }
+          .farm-card:hover img {
+            transform: scale(1.10);
+          }
+
+          /* ── Overlay ── */
+          .farm-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to top,
+              rgba(15, 40, 15, 0.82) 0%,
+              rgba(15, 40, 15, 0.18) 55%,
+              transparent 100%
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px 22px;
+            opacity: 0;
+            transition: opacity 0.35s ease;
+          }
+          .farm-card:hover .farm-card-overlay {
+            opacity: 1;
+          }
+          .farm-card-overlay .farm-tag {
+            display: inline-block;
+            background: #4a7c59;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+            width: fit-content;
+            transform: translateY(8px);
+            transition: transform 0.35s ease 0.05s;
+          }
+          .farm-card:hover .farm-card-overlay .farm-tag {
+            transform: translateY(0);
+          }
+          .farm-card-overlay h4 {
+            color: #fff;
+            font-size: 17px;
+            font-weight: 700;
+            margin: 0;
+            transform: translateY(10px);
+            transition: transform 0.35s ease 0.1s;
+          }
+          .farm-card:hover .farm-card-overlay h4 {
+            transform: translateY(0);
+          }
+
+          /* ── Corner accent badge ── */
+          .farm-card-badge {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            background: rgba(255,255,255,0.92);
+            border-radius: 50%;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.6);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+          }
+          .farm-card:hover .farm-card-badge {
+            opacity: 1;
+            transform: scale(1);
+          }
+          .farm-card-badge svg {
+            width: 18px;
+            height: 18px;
+            stroke: #4a7c59;
+            fill: none;
+          }
+        `}</style>
+
         <div className="container">
-          <div className="row">
-            <div className="col-lg-8 offset-lg-2">
-              <div className="site-heading text-center">
-                <h5 className="sub-title">Awesome Gallery</h5>
-                <h2 className="title">Gallery Of Our Products</h2>
-                <div className="devider"></div>
-              </div>
-            </div>
+          <div className="section-head">
+            <span className="sub-label">Awesome Gallery</span>
+            <h2>Gallery Of Our Farms</h2>
+            <div className="divider-line"></div>
           </div>
         </div>
-        <div className="container container-stage">
-          <div className="row">
-            <div className="col-xl-12">
-              <div className="carousel-stage-right carousel-style-one swiper">
-                <div className="swiper-wrapper">
-                  {[
-                    { label: "Fruit", title: "Healthy Food", image: "product1.webp" },
-                    { label: "Organic", title: "Cow Milk", image: "product2.webp" },
-                    { label: "Vegetables", title: "Organic Vegetables", image: "product3.webp" },
-                    { label: "Cereals", title: "Fresh Mandrains", image: "product4.webp" },
-                    { label: "Havest", title: "Crispy Cucumber", image: "product5.webp" },
-                  ].map((g) => (
-                    <div className="swiper-slide" key={g.title}>
-                      <div className="gallery-style-one">
-                        <img src={`/assets/img/product/${g.image}`} alt={g.title} />
-                        <div className="overlay">
-                          <span>{g.label}</span>
-                          <h4><a href="#">{g.title}</a></h4>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+
+        <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+          <div className="farm-grid">
+            {galleryItems.map((item, index) => (
+              <div className="farm-card" key={item.title}>
+                <img src={item.src} alt={item.title} />
+                <div className="farm-card-overlay">
+                  <span className="farm-tag">{item.tag}</span>
+                  <h4>{item.title}</h4>
                 </div>
-                <div className="swiper-pagination"></div>
+                <button
+                  className="farm-card-badge"
+                  onClick={() => openLightbox(index)}
+                  aria-label={`Expand ${item.title}`}
+                  style={{ border: "none", cursor: "pointer" }}
+                >
+                  <svg viewBox="0 0 24 24" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+                  </svg>
+                </button>
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
+
+      {/* ── LIGHTBOX CSS (always rendered) ── */}
+      <style>{`
+        @keyframes lbFadeIn { from { opacity: 0 } to { opacity: 1 } }
+        @keyframes lbImgIn { from { opacity:0; transform: scale(0.93) } to { opacity:1; transform: scale(1) } }
+        .lb-img { animation: lbImgIn 0.3s ease; }
+        .lb-backdrop {
+          position: fixed; inset: 0; z-index: 99999;
+          background: rgba(0,0,0,0.92);
+          display: flex; align-items: center; justify-content: center;
+          animation: lbFadeIn 0.25s ease;
+        }
+        .lb-nav-btn {
+          position: fixed; top: 50%;
+          transform: translateY(-50%);
+          background: rgba(255,255,255,0.12);
+          border: 2px solid rgba(255,255,255,0.25);
+          border-radius: 50%;
+          width: 52px; height: 52px;
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.2s;
+          color: #fff; font-size: 28px; line-height: 1;
+          z-index: 100000;
+        }
+        .lb-nav-btn:hover { background: rgba(74,124,89,0.7); transform: translateY(-50%) scale(1.1); }
+        .lb-close-btn {
+          position: fixed; top: 20px; right: 24px;
+          background: rgba(255,255,255,0.1);
+          border: 2px solid rgba(255,255,255,0.25);
+          border-radius: 50%;
+          width: 48px; height: 48px;
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer; color: #fff; font-size: 20px;
+          transition: background 0.2s;
+          z-index: 100000;
+        }
+        .lb-close-btn:hover { background: rgba(220,50,50,0.7); }
+        .lb-counter {
+          position: fixed; bottom: 24px; left: 50%;
+          transform: translateX(-50%);
+          color: rgba(255,255,255,0.75); font-size: 14px;
+          font-weight: 600; letter-spacing: 2px;
+          background: rgba(0,0,0,0.4);
+          padding: 6px 18px; border-radius: 20px; z-index: 100000;
+          white-space: nowrap;
+        }
+        .lb-caption {
+          position: fixed; bottom: 64px; left: 50%;
+          transform: translateX(-50%);
+          text-align: center; z-index: 100000;
+          white-space: nowrap;
+        }
+        .lb-caption .lb-tag {
+          display: inline-block; background: #4a7c59;
+          color: #fff; font-size: 11px; font-weight: 700;
+          letter-spacing: 2px; text-transform: uppercase;
+          padding: 3px 12px; border-radius: 20px; margin-bottom: 6px;
+        }
+        .lb-caption h4 { color: #fff; font-size: 20px; font-weight: 700; margin: 0; }
+      `}</style>
+
+      {/* ── LIGHTBOX MODAL (portal) ── */}
+      {mounted && lightboxIndex !== null && ReactDOM.createPortal(
+        <div className="lb-backdrop" onClick={closeLightbox}>
+          {/* Close */}
+          <button className="lb-close-btn" onClick={(e) => { e.stopPropagation(); closeLightbox(); }} aria-label="Close">
+            ✕
+          </button>
+
+          {/* Prev */}
+          <button className="lb-nav-btn" style={{ left: "20px" }}
+            onClick={(e) => { e.stopPropagation(); prevImage(); }} aria-label="Previous">
+            ‹
+          </button>
+
+          {/* Image */}
+          <img
+            key={lightboxIndex}
+            className="lb-img"
+            src={galleryItems[lightboxIndex].src}
+            alt={galleryItems[lightboxIndex].title}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              maxWidth: "90vw", maxHeight: "82vh",
+              objectFit: "contain", borderRadius: "12px",
+              boxShadow: "0 20px 80px rgba(0,0,0,0.6)",
+            }}
+          />
+
+          {/* Next */}
+          <button className="lb-nav-btn" style={{ right: "20px" }}
+            onClick={(e) => { e.stopPropagation(); nextImage(); }} aria-label="Next">
+            ›
+          </button>
+
+          {/* Caption */}
+          <div className="lb-caption" onClick={(e) => e.stopPropagation()}>
+            <div className="lb-tag">{galleryItems[lightboxIndex].tag}</div>
+            <h4>{galleryItems[lightboxIndex].title}</h4>
+          </div>
+
+          {/* Counter */}
+          <div className="lb-counter">{lightboxIndex + 1} / {galleryItems.length}</div>
+        </div>,
+        document.body
+      )}
 
       {/* ── FUN FACTS ── */}
       <div className="fun-facts-area default-padding">
@@ -715,9 +1111,9 @@ export default function Home() {
               <div className="col-lg-8 fun-fact-style-one text-end">
                 <div className="row">
                   {[
-                    { val: "250", unit: "M", label: "Growth Tonns of Harvest" },
+                    { val: "12", unit: "K", label: "Growth Tonns of Harvest" },
                     { val: "98", unit: "%", label: "Happy clients" },
-                    { val: "688", unit: "K", label: "Sales of our Products" },
+                    { val: "68", unit: "K", label: "Sales of our Products" },
                   ].map((f) => (
                     <div className="col-lg-4 col-md-4 item" key={f.label}>
                       <div className="fun-fact">
@@ -880,7 +1276,7 @@ export default function Home() {
                 <div className="footer-item link">
                   <h4 className="widget-title">Explore</h4>
                   <ul>
-                    {["About Us", "Meet Our Team", "News & Media", "Services", "Contact Us", "Volunteers"].map((l) => (
+                    {["About Us", "Meet Our Team", "News & Media", "Contact Us", "Volunteers"].map((l) => (
                       <li key={l}><a href="#">{l}</a></li>
                     ))}
                   </ul>
