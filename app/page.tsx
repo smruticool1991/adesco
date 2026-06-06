@@ -1319,7 +1319,6 @@ export default function Home() {
                       <div className="icon"><i className="fas fa-phone"></i></div>
                       <div className="content"><strong>Phone:</strong> <a href="tel:+1 (780) 297-0185">+1 (780) 297-0185</a><br/>
                        <a href="tel:+1 (403) 830-0579">+1 (403) 830-0579</a>
-                      
                       </div>
                     </li>
                   </ul>
@@ -1327,6 +1326,71 @@ export default function Home() {
               </div>
             </div>
           </div>
+
+          {/* ── Partner Logos Row ── */}
+          <div style={{
+            borderTop: "1px solid rgba(255,255,255,0.1)",
+            paddingTop: "24px",
+            paddingBottom: "24px",
+            display: "flex",
+            alignItems: "center",
+            gap: "32px",
+            flexWrap: "wrap",
+          }}>
+            <span style={{
+              fontSize: "11px",
+              fontWeight: "700",
+              letterSpacing: "2px",
+              textTransform: "uppercase",
+              color: "rgba(255,255,255,0.45)",
+              flexShrink: 0,
+            }}>
+              Supported By
+            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: "28px", flexWrap: "wrap" }}>
+              <a
+                href="https://www.canada.ca"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: "8px",
+                  padding: "10px 18px",
+                  transition: "background 0.2s",
+                }}
+              >
+                <img
+                  src="/assets/img/canada-wordmark-white-footer2.png"
+                  alt="Government of Canada"
+                  style={{ height: "38px", objectFit: "contain", filter: "brightness(1.1)" }}
+                />
+              </a>
+              <a
+                href="https://agriculture.canada.ca"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.12)",
+                  borderRadius: "8px",
+                  padding: "10px 18px",
+                  transition: "background 0.2s",
+                }}
+              >
+                <img
+                  src="/assets/img/agrifood-canada-footer.png"
+                  alt="Agriculture and Agri-Food Canada"
+                  style={{ height: "38px", objectFit: "contain", filter: "brightness(1.1)" }}
+                />
+              </a>
+            </div>
+          </div>
+
           <div className="footer-bottom">
             <div className="row">
               <div className="col-lg-6">
