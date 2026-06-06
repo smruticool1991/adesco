@@ -562,16 +562,16 @@ export default function Home() {
               <div className="services-style-one-carousel swiper">
                 <div className="swiper-wrapper">
                   {[
-                    { img: "1.png", title: "Youth Training" },
-                    { img: "2.png", title: "Sustainable Practices" },
-                    { img: "3.png", title: "Community Engagement" },
-                    { img: "4.png", title: "Food Autonomy" },
-                    { img: "6.png", title: "Regenerative Agriculture" },
+                    { img: "goat.png", title: "Youth Training" },
+                    { img: "rice.png", title: "Sustainable Practices" },
+                    { img: "cow.png", title: "Community Engagement" },
+                    { img: "food.png", title: "Food Autonomy" },
+                    { img: "potato.png", title: "Regenerative Agriculture" },
                   ].map((s) => (
                     <div className="swiper-slide" key={s.title}>
                       <div className="services-style-one">
                         <div className="thumb">
-                          <img src={`/assets/img/thumb/${s.img}`} alt={s.title} />
+                          <img src={`/assets/img/focus/${s.img}`} alt={s.title} />
                         </div>
                         <h5><a href="#">{s.title}</a></h5>
                         <p>Building equitable food systems through education, collaboration, and inclusive practices.</p>
@@ -753,7 +753,7 @@ export default function Home() {
           <div className="row align-center">
             <div className="col-lg-5">
               <div className="testimonial-info text-center">
-                <h4>Testimonial</h4>
+                <h4>People Says</h4>
                 <div className="thumb">
                   <img src="https://placehold.co/150x150/4a7c59/ffffff?text=MJW" alt="Matthew J. Wyman" />
                   <img src="https://placehold.co/150x150/4a7c59/ffffff?text=ABS" alt="Anthom Bu Spar" />

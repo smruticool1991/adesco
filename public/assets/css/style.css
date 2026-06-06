@@ -3946,6 +3946,7 @@ ul.counter-list li:nth-child(2) {
 	background: var(--white);
 	position: relative;
 	z-index: 1;
+	text-align: center;
 }
 
 .services-style-one p {
