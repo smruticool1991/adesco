@@ -322,7 +322,7 @@ function Navbar() {
                 <i className="fa fa-bars"></i>
               </button>
               <a className="navbar-brand" href="/" data-discover="true">
-                <img className="logo logo-display" alt="Logo" src="/assets/img/logo-light.jpeg" style={{width: "100px"}}/>
+                <img className="logo logo-display" alt="Logo" src="/assets/img/logo-light.png" style={{width: "145px", height: "auto"}}/>
                 <img className="logo logo-scrolled" alt="Logo" src="/assets/img/logo.png" style={{height: "100px"}}/>
               </a>
             </div>
@@ -347,23 +347,25 @@ function Navbar() {
                     <li><a href="/home-3" data-discover="true">Goat Banking</a></li>
                     <li><a href="/home-3" data-discover="true">Cattle Banking</a></li>
                     <li><a href="/home-3" data-discover="true">Cultural Seeds</a></li>
+                    <li><a href="/home-3" data-discover="true">Chicken Banking</a></li>
+                    <li><a href="/home-3" data-discover="true">Seasonal Vegetables</a></li>
                   </ul>
                 </li>
                 <li>
-                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Blog</a>
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Media</a>
                 </li>
                 <li>
                   <a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true">Contact us</a>
                 </li>
                 <li>
                   <div className="button" style={{marginLeft: "30px"}}>
-                    <a className="btn btn-theme btn-md radius animation" style={{backgroundColor: "#fc4b00"}} href="#about">Donate</a>
+                    <a className="btn btn-theme btn-md radius animation" style={{backgroundColor: "#fc4b00"}} href="#about">Join</a>
                   </div>
                 </li>
                </ul>
               </div>
               
-              <div className="attr-right"><div className="attr-nav"><ul><li className="wishlist"><a href="/home-3" data-discover="true"><i className="fas fa-heart"></i></a></li><li className="dropdown"><a className="dropdown-toggle" data-toggle="dropdown" href="/home-3" data-discover="true"><i className="far fa-shopping-cart"></i><span className="badge">0</span></a><ul className="dropdown-menu cart-list"><li className="total"><p>Your cart is empty.</p></li></ul></li></ul></div></div></div><div className="overlay-screen"></div></nav>
+              <div className="attr-right"><div className="attr-nav"><ul><li><a href="https://wa.me/17802970185" target="_blank" rel="noopener noreferrer"><i style={{fontSize: "36px", color: "#25D366"}} className="fab fa-whatsapp"></i></a></li></ul></div></div></div><div className="overlay-screen"></div></nav>
               </header>
 
     </>
@@ -446,7 +448,7 @@ export default function Home() {
                 <div className="row align-center">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h2>Natural & Organic <br /> Farm Store</h2>
+                      <h2 style={{color: "#347604"}}>Natural & Organic <br /> Farm Store</h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
                             <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
@@ -468,7 +470,7 @@ export default function Home() {
                 <div className="row align-center">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h2> Fresh & Pure <br /> Dairy Farm </h2>
+                      <h2 style={{color: "#fff"}}> Fresh & Pure <br /> Dairy Farm </h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
                             <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
@@ -488,9 +490,8 @@ export default function Home() {
           <div className="swiper-button-next"></div>
         </div>
       </div>
-
       {/* ── ABOUT ── */}
-      <div className="about-style-one-area default-padding" id="about">
+      <div className="about-style-one-area default-padding" id="about" style={{ background: "#f0f7f2" }}>
         <div className="shape-right-top">
           <img src="/assets/img/shape/leaf.png" alt="Image not found" />
         </div>
@@ -498,9 +499,9 @@ export default function Home() {
           <div className="row align-center">
             <div className="col-xl-5 col-lg-6 about-style-one pr-50 pr-md-15 pr-xs-15">
               <div className="thumb">
-                <img src="/assets/img/about.webp" alt="Adesco Western Ranch" />
+                <img src="/assets/img/about2.webp" alt="Adesco Western Ranch" />
                 <div className="sub-item">
-                  <img src="/assets/img/farmer.webp" alt="Black Farmer in Canada" />
+                  <img src="/assets/img/about.webp" alt="Black Farmer in Canada" />
                 </div>
               </div>
             </div>
@@ -562,11 +563,11 @@ export default function Home() {
               <div className="services-style-one-carousel swiper">
                 <div className="swiper-wrapper">
                   {[
-                    { img: "goat.png", title: "Youth Training" },
-                    { img: "rice.png", title: "Sustainable Practices" },
-                    { img: "cow.png", title: "Community Engagement" },
-                    { img: "food.png", title: "Food Autonomy" },
-                    { img: "potato.png", title: "Regenerative Agriculture" },
+                    { img: "goat.png", title: "Youth Training", desc: "Empowering the next generation with hands-on agricultural skills, leadership development, and farm-to-table knowledge rooted in cultural heritage." },
+                    { img: "rice.png", title: "Sustainable Practices", desc: "Implementing eco-conscious farming methods that protect soil health, conserve water resources, and reduce environmental impact across every season." },
+                    { img: "cow.png", title: "Community Engagement", desc: "Partnering with local organizations, schools, and families to build stronger food networks and foster a shared sense of responsibility for the land." },
+                    { img: "food.png", title: "Food Autonomy", desc: "Supporting communities in growing and accessing their own nutritious food, reducing dependence on external supply chains and promoting self-sufficiency." },
+                    { img: "potato.png", title: "Regenerative Agriculture", desc: "Restoring ecosystem vitality through cover cropping, composting, and biodiversity practices that rebuild the land for generations to come." },
                   ].map((s) => (
                     <div className="swiper-slide" key={s.title}>
                       <div className="services-style-one">
@@ -574,7 +575,7 @@ export default function Home() {
                           <img src={`/assets/img/focus/${s.img}`} alt={s.title} />
                         </div>
                         <h5><a href="#">{s.title}</a></h5>
-                        <p>Building equitable food systems through education, collaboration, and inclusive practices.</p>
+                        <p>{s.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -680,7 +681,7 @@ export default function Home() {
       </div>
 
       {/* ── ABOUT OUR IMPACT ── */}
-      <div className="choose-us-style-one-area overflow-hidden default-padding">
+      <div className="choose-us-style-one-area overflow-hidden default-padding" style={{ background: "#fffaf2" }}>
         <div className="container">
           <div className="row align-center">
             <div className="col-lg-6 choose-us-style-one">
@@ -787,6 +788,141 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── OUR PRESIDENT SAID ── */}
+      <div className="president-said-area" style={{ padding: "80px 0", background: "#eaf4ec" }}>
+        <style>{`
+          .president-said-area .president-quote-wrap {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            background: linear-gradient(135deg, #f7fbf8 0%, #eaf4ec 100%);
+            border-radius: 16px;
+            padding: 60px 60px;
+            position: relative;
+            overflow: hidden;
+          }
+          .president-said-area .president-quote-wrap::before {
+            content: "\\201C";
+            font-size: 220px;
+            color: rgba(74,124,89,0.08);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1;
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            pointer-events: none;
+          }
+          .president-said-area .president-photo {
+            flex-shrink: 0;
+            position: relative;
+          }
+          .president-said-area .president-photo img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            box-shadow: 0 12px 40px rgba(74,124,89,0.2);
+          }
+          .president-said-area .president-photo .badge-tag {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-primary, #4a7c59);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 20px;
+            white-space: nowrap;
+          }
+          .president-said-area .president-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+          }
+          .president-said-area .president-content .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--color-primary, #4a7c59);
+            margin-bottom: 16px;
+          }
+          .president-said-area .president-content .section-tag::before {
+            content: "";
+            display: inline-block;
+            width: 30px;
+            height: 2px;
+            background: var(--color-primary, #4a7c59);
+            border-radius: 2px;
+          }
+          .president-said-area .president-content blockquote {
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.65;
+            color: #232323;
+            margin: 0 0 28px;
+            font-style: italic;
+          }
+          .president-said-area .president-content .president-name {
+            font-size: 18px;
+            font-weight: 800;
+            color: #232323;
+            margin: 0 0 4px;
+          }
+          .president-said-area .president-content .president-role {
+            font-size: 13px;
+            color: #777;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          }
+          .president-said-area .president-content .sign {
+            margin-top: 18px;
+            height: 48px;
+            opacity: 0.75;
+            filter: grayscale(20%);
+          }
+          @media (max-width: 768px) {
+            .president-said-area .president-quote-wrap {
+              flex-direction: column;
+              text-align: center;
+              padding: 40px 28px;
+              gap: 30px;
+            }
+            .president-said-area .president-content .section-tag {
+              justify-content: center;
+            }
+            .president-said-area .president-content blockquote {
+              font-size: 18px;
+            }
+          }
+        `}</style>
+        <div className="container">
+          <div className="president-quote-wrap">
+            <div className="president-photo">
+              <img src="/assets/img/president.jpg" alt="President of Adesco Western Ranch"
+                onError={(e) => { (e.target as HTMLImageElement).src = "https://placehold.co/200x200/4a7c59/ffffff?text=President"; }} />
+              <span className="badge-tag">President</span>
+            </div>
+            <div className="president-content">
+              <span className="section-tag">Our President Said</span>
+              <blockquote>
+                "At Adesco Western Ranch, our mission goes beyond farming — we are building a legacy of resilience, equity, and sustainability. Every acre we tend, every community we serve, is a testament to the belief that agriculture can be a powerful force for social justice and environmental stewardship."
+              </blockquote>
+              <p className="president-name">Timothy Adekola</p>
+              <p className="president-role">President &amp; Founder, Adesco Western Ranch Ltd.</p>
             </div>
           </div>
         </div>
@@ -982,6 +1118,33 @@ export default function Home() {
             ))}
           </div>
         </div>
+
+        {/* More Photos Button */}
+        <div style={{ textAlign: "center", marginTop: "48px" }}>
+          <a
+            href="/gallery"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              background: "var(--color-primary, #4a7c59)",
+              color: "#fff",
+              padding: "14px 36px",
+              borderRadius: "6px",
+              fontWeight: 700,
+              fontSize: "15px",
+              textDecoration: "none",
+              letterSpacing: "0.5px",
+              transition: "background 0.25s, transform 0.2s",
+              boxShadow: "0 4px 18px rgba(74,124,89,0.25)",
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = "#3d6a4a"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "var(--color-primary, #4a7c59)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}
+          >
+            <i className="fas fa-images"></i>
+            More Photos
+          </a>
+        </div>
       </div>
 
       {/* ── LIGHTBOX CSS (always rendered) ── */}
@@ -1092,7 +1255,7 @@ export default function Home() {
       )}
 
       {/* ── FUN FACTS ── */}
-      <div className="fun-facts-area default-padding">
+      <div className="fun-facts-area default-padding" style={{ background: "#f5f9f0" }}>
         <div className="shape-left">
           <img src="/assets/img/shape/27.png" alt="Image Not Found" />
         </div>
@@ -1215,7 +1378,7 @@ export default function Home() {
       </div>
 
       {/* ── BLOG ── */}
-      <div className="blog-area home-blog blog-grid default-padding bottom-less">
+      <div className="blog-area home-blog blog-grid default-padding bottom-less" style={{ background: "#f0f7f2" }}>
         <div className="container">
           <div className="row">
             <div className="col-lg-6 col-md-12 mb-30">
@@ -1387,6 +1550,35 @@ export default function Home() {
                   alt="Agriculture and Agri-Food Canada"
                   style={{ height: "38px", objectFit: "contain", filter: "brightness(1.1)" }}
                 />
+              </a>
+            </div>
+            {/* ── Follow Us on Instagram ── */}
+            <div style={{ marginLeft: "auto", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
+              <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
+                Follow Us On
+              </span>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "9px",
+                  background: "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+                  color: "#fff",
+                  padding: "9px 18px",
+                  borderRadius: "6px",
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  transition: "opacity 0.2s",
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
+                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+              >
+                <i className="fab fa-instagram" style={{ fontSize: "18px" }}></i>
+                Instagram
               </a>
             </div>
           </div>

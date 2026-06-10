@@ -2,3 +2,8 @@
 
 /* All template styles loaded via <link> in layout.tsx from /public/assets/css/ */
 /* Navbar is now a pure React component — no Bootstrap/validnavs CSS conflicts */
+
+/* ── Global font override ── */
+*, *::before, *::after {
+  font-family: 'Poppins', sans-serif !important;
+}

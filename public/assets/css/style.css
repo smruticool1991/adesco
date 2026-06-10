@@ -80,12 +80,10 @@ Sidebar heading:  20px 'Manrope', sans-serif
 
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
-
 /* Varialbes */
 :root {
-	--font-default: 'Manrope', sans-serif;
-	--font-secondary: 'Handlee', cursive;
+	--font-default: 'Poppins', sans-serif;
+	--font-secondary: 'Poppins', sans-serif;
 	--fontawesome: "Font Awesome 5 Pro";
 	--black: #000000;
 	--dark: #1f4e3d;
@@ -4030,6 +4028,9 @@ ul.counter-list li:nth-child(2) {
 	opacity: 0.1;
 	z-index: -1;
 }
+.content h2{
+	color: #ff1f29;
+}
 
 
 /* ============================================================== 
@@ -4521,7 +4522,7 @@ ul.counter-list li:nth-child(2) {
 	-webkit-background-clip: text;
 	background-size: cover;
 	background-position: center;
-	font-size: 110px;
+	font-size: 50px;
 	font-weight: 900;
 	margin: 0;
 	line-height: 1;
