@@ -4,6 +4,6 @@
 /* Navbar is now a pure React component — no Bootstrap/validnavs CSS conflicts */
 
 /* ── Global font override ── */
-*, *::before, *::after {
-  font-family: 'Poppins', sans-serif !important;
+* {
+  font-family: 'Poppins', sans-serif;
 }
