@@ -822,9 +822,9 @@ export default function Home() {
             position: relative;
           }
           .president-said-area .president-photo img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            width: 260px;
+            height: 260px;
+            border-radius: 12px;
             object-fit: cover;
             border: 5px solid #fff;
             box-shadow: 0 12px 40px rgba(74,124,89,0.2);
