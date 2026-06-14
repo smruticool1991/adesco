@@ -511,7 +511,7 @@ p {
 	content: "";
 	height: 100%;
 	left: 0;
-	opacity: 0.5;
+	opacity: 0.3;
 	position: absolute;
 	top: 0;
 	width: 100%;
@@ -585,8 +585,8 @@ p {
 }
 
 .default-padding {
-	padding-top: 120px;
-	padding-bottom: 120px;
+	padding-top: 100px;
+	padding-bottom: 100px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -3685,7 +3685,7 @@ nav.navbar.validnavs.inc-shape::after {
 }
 
 .banner-style-three h2 {
-	font-size: 90px;
+	font-size: 65px;
 	font-weight: 900;
 	margin-bottom: 40px;
 	line-height: 1;
@@ -5582,7 +5582,7 @@ ul.counter-list li:nth-child(2) {
 	content: "";
 	height: 100%;
 	width: 100%;
-	background: url(../img/shape/quote-2.png);
+	background: url(../img/tes/quote-2.png);
 	background-repeat: no-repeat;
 	background-position: center;
 	transform: translate(-50%, -50%);

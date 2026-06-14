@@ -426,7 +426,7 @@ export default function Home() {
                 <div className="row align-center">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h2>Ultimate Products <br /> & Customers</h2>
+                      <h2>We Believe in Farming with <br/> a Respect for the Land</h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
                             <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
@@ -448,7 +448,7 @@ export default function Home() {
                 <div className="row align-center">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h2 style={{color: "#347604"}}>Natural & Organic <br /> Farm Store</h2>
+                      <h2 style={{color: "#347604"}}>Natural & Organic Farming by <br/> Canadian Black Farmers</h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
                             <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
@@ -470,7 +470,7 @@ export default function Home() {
                 <div className="row align-center">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h2 style={{color: "#fff"}}> Fresh & Pure <br /> Dairy Farm </h2>
+                      <h2 style={{color: "#fff"}}> Adesco is an Animal-Friendly <br/> Housing & Comfort Ranch </h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
                             <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
@@ -490,6 +490,58 @@ export default function Home() {
           <div className="swiper-button-next"></div>
         </div>
       </div>
+      <div className="product-feature-style-one-area overflow-hidden default-padding">
+        <div className="container">
+            <div className="row align-center">
+                <div className="col-lg-5 mb-xs-50 mb-md-120">
+                    <div className="product-feature-style-one">
+                        <div className="info">
+                            <h4 className="sub-title">Healthy Foods</h4>
+                            <h2 className="title mb-25">We’re Best Agriculture <br /> &amp; Organic Firms</h2>
+                            <p>
+                                Give lady of they such they sure it. Me contained explained my education. Vulgar as hearts by garret. Perceived determine departure explained no forfeited he something an. Contrasted dissimilar get joy you instrument out reasonably. Again keeps at no meant stuff. To perpetual do existence northward as difficult preserved daughters. Continued at up to zealously necessary breakfast. Surrounded sir motionless she end literature. Gay direction neglected .
+                            </p>
+                            <a href="https://www.youtube.com/watch?v=ZuzZXT3A1aQ" className="popup-youtube video-play-button with-text mt-15">
+                                <div className="effect"></div>
+                                <span><i className="fas fa-play"></i> OUR STORY</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div className="col-lg-6 offset-lg-1">
+                    <div className="product-features-style-one pl-100 pl-md-15 pl-xs-15 pt-md-120">
+                        <div className="organic-badge">
+                            <img src="assets/img/illustration/badge.png" alt="Badge"/>
+                        </div>
+                        <div className="product-feature-item">
+                            <div className="thumb" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <img src="assets/img/healthy/cow.png" alt="Thumb"/>
+                            </div>
+                            <h4><a href="#">Dairy Products</a></h4>
+                        </div>
+                        <div className="product-feature-item">
+                            <div className="thumb" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <img src="assets/img/healthy/goat.png" alt="Thumb"/>
+                            </div>
+                            <h4><a href="#">Livestock Farming</a></h4>
+                        </div>
+                        <div className="product-feature-item">
+                            <div className="thumb" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <img src="assets/img/healthy/hen.png" alt="Thumb"/>
+                            </div>
+                            <h4><a href="#">Poultry Farming</a></h4>
+                        </div>
+                        <div className="product-feature-item">
+                            <div className="thumb" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <img src="assets/img/healthy/veg1.png" alt="Thumb"/>
+                            </div>
+                            <h4><a href="#">Organic Vegetables</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
       {/* ── ABOUT ── */}
       <div className="about-style-one-area default-padding" id="about" style={{ background: "#f0f7f2" }}>
         <div className="shape-right-top">
@@ -528,6 +580,160 @@ export default function Home() {
                     <p>Building networks of support and collaboration that transcend rural isolation.</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── WEBINAR SERIES ── */}
+      <div className="webinar-section">
+        <style>{`
+          .webinar-section {
+            background: #0b0b0b;
+            position: relative;
+            color: #fff;
+            padding: 0 0 100px;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+          }
+          .webinar-curve {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            margin-top: -1px;
+            background: #f0f7f2; /* Match the light green background of the About section above */
+          }
+          .webinar-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 0;
+          }
+          .webinar-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+          }
+          .webinar-icon {
+            flex-shrink: 0;
+            margin-top: 5px;
+          }
+          .webinar-content {
+            flex: 1;
+          }
+          .webinar-content h3 {
+            color: #fff;
+            font-size: clamp(24px, 3vw, 36px);
+            font-weight: 700;
+            margin: 0 0 18px;
+            font-family: 'Poppins', sans-serif;
+          }
+          .webinar-content p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 16px;
+            line-height: 1.8;
+            margin: 0 0 30px;
+            font-family: 'Poppins', sans-serif;
+          }
+          .webinar-content p strong {
+            color: #fff;
+            font-weight: 700;
+          }
+          .webinar-actions {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+          }
+          .webinar-actions a {
+            display: inline-block;
+            padding: 14px 35px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            text-align: center;
+          }
+          .btn-register {
+            background: #fff;
+            color: #0b0b0b !important;
+            border: 2px solid #fff;
+          }
+          .btn-register:hover {
+            background: transparent;
+            color: #fff !important;
+          }
+          .btn-learn {
+            background: transparent;
+            color: #fff !important;
+            border: 2px solid rgba(255, 255, 255, 0.45);
+          }
+          .btn-learn:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+          }
+
+          @media (max-width: 991px) {
+            .webinar-inner {
+              gap: 30px;
+            }
+          }
+          @media (max-width: 768px) {
+            .webinar-section {
+              padding: 0 0 80px;
+            }
+            .webinar-inner {
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+              gap: 25px;
+            }
+            .webinar-icon {
+              margin-top: 0;
+            }
+            .webinar-actions {
+              justify-content: center;
+              width: 100%;
+            }
+            .webinar-actions a {
+              flex: 1;
+              min-width: 150px;
+            }
+          }
+        `}</style>
+
+        <div className="webinar-curve">
+          <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ width: '100%', height: '60px', display: 'block' }}>
+            <path d="M0,0 Q720,55 1440,0 L1440,60 L0,60 Z" fill="#0b0b0b" />
+          </svg>
+        </div>
+
+        <div className="container">
+          <div className="webinar-inner">
+            <div className="webinar-icon">
+              <svg width="88" height="88" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                {/* Board */}
+                <rect x="23" y="11" width="36" height="26" rx="2" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
+                {/* Stand legs */}
+                <path d="M31 37v10M51 37v10" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                {/* Lines on board */}
+                <path d="M37 19h14M37 25h14M37 31h8" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                {/* Person silhouette */}
+                <circle cx="15" cy="23" r="6.5" stroke="white" strokeWidth="2.5" />
+                <path d="M5 41c0-5 4-8 10-8s10 3 10 8v8H5v-8z" stroke="white" strokeWidth="2.5" strokeLinejoin="round" />
+                {/* Pointer stick */}
+                <path d="M21 33l8-8" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            <div className="webinar-content">
+              <h3>Webinar Series</h3>
+              <p>
+                Join us for one of four webinars on mental wellness for black farmers. Click the button to register. Next in the series.. <strong>Reclaiming the Land: Reshaping the Narrative of Black Farming.</strong>
+              </p>
+              <div className="webinar-actions">
+                <a href="#register" className="btn-register">Register Now</a>
+                <a href="#learn-more" className="btn-learn">Learn More</a>
               </div>
             </div>
           </div>
@@ -749,12 +955,64 @@ export default function Home() {
       </div>
 
       {/* ── TESTIMONIALS ── */}
-      <div className="testimonials-area default-padding bg-gray" style={{ backgroundImage: "url(/assets/img/shape/23.png)" }}>
-        <div className="container">
+      <div className="testimonials-area default-padding" style={{
+        background: "linear-gradient(135deg, #0f2d1f 0%, #1a4a2e 40%, #1f5a35 70%, #153d25 100%)",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        {/* Subtle decorative overlay */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(ellipse at 20% 50%, rgba(73,167,96,0.12) 0%, transparent 60%), radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.04) 0%, transparent 50%)",
+          pointerEvents: "none",
+        }} />
+        <style>{`
+          .testimonials-area .testimonial-style-two p {
+            color: rgba(255,255,255,0.92) !important;
+            font-size: 20px;
+          }
+          .testimonials-area .testimonial-style-two h4 {
+            color: #fff !important;
+          }
+          .testimonials-area .testimonial-style-two span {
+            color: #82c45a !important;
+          }
+          .testimonials-area .testimonial-info h4 {
+            color: #fff !important;
+          }
+        `}</style>
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div className="row align-center">
             <div className="col-lg-5">
-              <div className="testimonial-info text-center">
-                <h4>People Says</h4>
+              <div className="testimonial-info text-center" style={{ position: "relative" }}>
+                {/* Center Circle Image */}
+                <div className="center-circle-img" style={{
+                  position: "absolute",
+                  left: "50%",
+                  top: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: "300px",
+                  height: "300px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  zIndex: 0,
+                  boxShadow: "0 8px 40px rgba(0,0,0,0.45)",
+                  border: "4px solid rgba(130,196,90,0.5)"
+                }}>
+                  <img src="/assets/img/testimonial/1.jpeg" alt="Organic Farm Center" style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: "50%",
+                    position: "static",
+                    boxShadow: "none",
+                    padding: 0,
+                    background: "none",
+                    filter: "brightness(0.65) contrast(1.1)"
+                  }} />
+                </div>
+                <h4 style={{ zIndex: 2, position: "relative", color: "#fff", textShadow: "0 2px 12px rgba(0,0,0,0.9)" }}>People Says</h4>
                 <div className="thumb">
                   <img src="https://placehold.co/150x150/4a7c59/ffffff?text=MJW" alt="Matthew J. Wyman" />
                   <img src="https://placehold.co/150x150/4a7c59/ffffff?text=ABS" alt="Anthom Bu Spar" />
@@ -776,7 +1034,7 @@ export default function Home() {
                         <div className="item">
                           <div className="content"><p>&#8220;{t.quote}&#8221;</p></div>
                           <div className="provider" style={{ display: "flex", alignItems: "center" }}>
-                            <img src={t.image} alt={t.name} style={{ width: "50px", height: "50px", borderRadius: "50%", marginRight: "12px", flexShrink: 0 }} />
+                            <img src={t.image} alt={t.name} style={{ width: "50px", height: "50px", borderRadius: "50%", marginRight: "12px", flexShrink: 0, border: "2px solid rgba(130,196,90,0.6)" }} />
                             <div className="info">
                               <h4>{t.name}</h4>
                               <span>{t.role}</span>
@@ -794,27 +1052,49 @@ export default function Home() {
       </div>
 
       {/* ── OUR PRESIDENT SAID ── */}
-      <div className="president-said-area" style={{ padding: "80px 0", background: "#eaf4ec" }}>
+      <div className="president-said-area" style={{
+        padding: "100px 0",
+        background: "linear-gradient(160deg, #05111a 0%, #092232 35%, #0d3347 65%, #071828 100%)",
+        position: "relative",
+        overflow: "hidden",
+      }}>
+        {/* Decorative radial glows */}
+        <div style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(ellipse at 10% 50%, rgba(240,192,64,0.08) 0%, transparent 55%), radial-gradient(ellipse at 90% 30%, rgba(13,83,120,0.25) 0%, transparent 60%)",
+          pointerEvents: "none",
+        }} />
+        {/* Top gold accent line */}
+        <div style={{
+          position: "absolute",
+          top: 0, left: 0, right: 0,
+          height: "4px",
+          background: "linear-gradient(90deg, transparent 0%, #c9a84c 30%, #f0d080 60%, #c9a84c 80%, transparent 100%)",
+        }} />
         <style>{`
           .president-said-area .president-quote-wrap {
             display: flex;
             align-items: center;
             gap: 60px;
-            background: linear-gradient(135deg, #f7fbf8 0%, #eaf4ec 100%);
-            border-radius: 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 20px;
             padding: 60px 60px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+            backdrop-filter: blur(4px);
           }
           .president-said-area .president-quote-wrap::before {
             content: "\\201C";
-            font-size: 220px;
-            color: rgba(74,124,89,0.08);
-            font-family: 'Poppins', sans-serif;
+            font-size: 280px;
+            color: rgba(201,168,76,0.09);
+            font-family: 'Georgia', serif;
             line-height: 1;
             position: absolute;
-            top: -20px;
-            left: 30px;
+            top: -40px;
+            left: 20px;
             pointer-events: none;
           }
           .president-said-area .president-photo {
@@ -824,25 +1104,26 @@ export default function Home() {
           .president-said-area .president-photo img {
             width: 260px;
             height: 260px;
-            border-radius: 12px;
+            border-radius: 14px;
             object-fit: cover;
-            border: 5px solid #fff;
-            box-shadow: 0 12px 40px rgba(74,124,89,0.2);
+            border: 4px solid rgba(201,168,76,0.45);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.55), 0 0 0 8px rgba(201,168,76,0.08);
           }
           .president-said-area .president-photo .badge-tag {
             position: absolute;
             bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
-            background: var(--color-primary, #4a7c59);
-            color: #fff;
+            background: linear-gradient(135deg, #c9a84c, #f0d080);
+            color: #0a1a08;
             font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            padding: 4px 14px;
+            padding: 5px 16px;
             border-radius: 20px;
             white-space: nowrap;
+            box-shadow: 0 4px 14px rgba(201,168,76,0.4);
           }
           .president-said-area .president-content {
             flex: 1;
@@ -852,39 +1133,41 @@ export default function Home() {
           .president-said-area .president-content .section-tag {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: 2.5px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--color-primary, #4a7c59);
-            margin-bottom: 16px;
+            color: #c9a84c;
+            margin-bottom: 20px;
           }
           .president-said-area .president-content .section-tag::before {
             content: "";
             display: inline-block;
-            width: 30px;
+            width: 34px;
             height: 2px;
-            background: var(--color-primary, #4a7c59);
+            background: linear-gradient(90deg, #c9a84c, #f0d080);
             border-radius: 2px;
           }
           .president-said-area .president-content blockquote {
             font-size: 22px;
-            font-weight: 600;
-            line-height: 1.65;
-            color: #232323;
+            font-weight: 500;
+            line-height: 1.75;
+            color: rgba(255,255,255,0.90);
             margin: 0 0 28px;
             font-style: italic;
+            border-left: 3px solid rgba(201,168,76,0.5);
+            padding-left: 20px;
           }
           .president-said-area .president-content .president-name {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 800;
-            color: #232323;
-            margin: 0 0 4px;
+            color: #fff;
+            margin: 0 0 5px;
           }
           .president-said-area .president-content .president-role {
             font-size: 13px;
-            color: #777;
+            color: rgba(255,255,255,0.50);
             font-weight: 500;
             letter-spacing: 0.5px;
           }
@@ -892,7 +1175,7 @@ export default function Home() {
             margin-top: 18px;
             height: 48px;
             opacity: 0.75;
-            filter: grayscale(20%);
+            filter: brightness(10);
           }
           @media (max-width: 768px) {
             .president-said-area .president-quote-wrap {
@@ -906,10 +1189,14 @@ export default function Home() {
             }
             .president-said-area .president-content blockquote {
               font-size: 18px;
+              border-left: none;
+              padding-left: 0;
+              border-top: 3px solid rgba(201,168,76,0.5);
+              padding-top: 16px;
             }
           }
         `}</style>
-        <div className="container">
+        <div className="container" style={{ position: "relative", zIndex: 1 }}>
           <div className="president-quote-wrap">
             <div className="president-photo">
               <img src="/assets/img/president.jpg" alt="President of Adesco Western Ranch"
@@ -1090,7 +1377,7 @@ export default function Home() {
         <div className="container">
           <div className="section-head">
             <span className="sub-label">Awesome Gallery</span>
-            <h2>Gallery Of Our Farms</h2>
+            <h2>Farm Gallery</h2>
             <div className="divider-line"></div>
           </div>
         </div>
@@ -1268,15 +1555,15 @@ export default function Home() {
               <div className="col-lg-4 fun-fact-style-one">
                 <div className="heading">
                   <div className="sub-title">Achivements</div>
-                  <h2 className="title">Delivering value <br /> since 1956</h2>
+                  <h2 className="title">Delivering value <br /> since 10 Years</h2>
                 </div>
               </div>
               <div className="col-lg-8 fun-fact-style-one text-end">
                 <div className="row">
                   {[
-                    { val: "12", unit: "K", label: "Growth Tonns of Harvest" },
-                    { val: "98", unit: "%", label: "Happy clients" },
-                    { val: "68", unit: "K", label: "Sales of our Products" },
+                    { val: "12", unit: "K", label: "Tons of Fresh Produce" },
+                    { val: "98", unit: "%", label: "Happy Community Members" },
+                    { val: "68", unit: "K", label: "Families Fed & Supported" },
                   ].map((f) => (
                     <div className="col-lg-4 col-md-4 item" key={f.label}>
                       <div className="fun-fact">
@@ -1429,10 +1716,10 @@ export default function Home() {
                 <div className="footer-item about">
                   <img className="logo" src="/assets/img/logo-light.jpeg" alt="Logo" />
                   <p>Happen active county. Winding morning ambition shyness evident to poor. Because elderly new to the point to main success.</p>
-                  <form action="#">
+                  {/* <form action="#">
                     <input type="email" placeholder="Your Email" className="form-control" name="email" />
                     <button type="submit"> Go</button>
-                  </form>
+                  </form> */}
                 </div>
               </div>
               <div className="col-lg-2 col-md-6 item">
@@ -1552,34 +1839,90 @@ export default function Home() {
                 />
               </a>
             </div>
-            {/* ── Follow Us on Instagram ── */}
-            <div style={{ marginLeft: "auto", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "8px" }}>
+            {/* ── Follow Us On ── */}
+            <div style={{ marginLeft: "auto", display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "10px" }}>
               <span style={{ fontSize: "11px", fontWeight: 700, letterSpacing: "2px", textTransform: "uppercase", color: "rgba(255,255,255,0.45)" }}>
                 Follow Us On
               </span>
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "9px",
-                  background: "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
-                  color: "#fff",
-                  padding: "9px 18px",
-                  borderRadius: "6px",
-                  fontWeight: 700,
-                  fontSize: "14px",
-                  textDecoration: "none",
-                  transition: "opacity 0.2s",
-                }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
-                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-              >
-                <i className="fab fa-instagram" style={{ fontSize: "18px" }}></i>
-                Instagram
-              </a>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", justifyContent: "flex-end" }}>
+                {/* Instagram */}
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "9px",
+                    background: "linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
+                    color: "#fff",
+                    padding: "9px 18px",
+                    borderRadius: "6px",
+                    fontWeight: 700,
+                    fontSize: "14px",
+                    textDecoration: "none",
+                    transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                >
+                  <i className="fab fa-instagram" style={{ fontSize: "18px" }}></i>
+                  Instagram
+                </a>
+                {/* Google My Business */}
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Adesco+Western+Ranch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "9px",
+                    background: "#fff",
+                    color: "#444",
+                    padding: "9px 18px",
+                    borderRadius: "6px",
+                    fontWeight: 700,
+                    fontSize: "14px",
+                    textDecoration: "none",
+                    transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                >
+                  <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#4285F4" d="M24 9.5c3.1 0 5.6 1.1 7.6 2.9l5.6-5.6C33.7 3.5 29.2 1.5 24 1.5 14.9 1.5 7.2 7.2 4.1 15.1l6.6 5.1C12.3 13.7 17.6 9.5 24 9.5z"/>
+                    <path fill="#34A853" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.4c-.5 2.7-2.1 5-4.4 6.6l6.8 5.3c4-3.7 6.3-9.2 6.3-15.9z"/>
+                    <path fill="#FBBC05" d="M10.7 28.6A14.6 14.6 0 0 1 9.5 24c0-1.6.3-3.2.8-4.6l-6.6-5.1A22.5 22.5 0 0 0 1.5 24c0 3.6.9 7 2.4 10l6.8-5.4z"/>
+                    <path fill="#EA4335" d="M24 46.5c5.2 0 9.5-1.7 12.7-4.6l-6.8-5.3c-1.7 1.2-3.8 1.9-5.9 1.9-6.4 0-11.7-4.3-13.3-10l-6.8 5.4C7.2 40.8 14.9 46.5 24 46.5z"/>
+                  </svg>
+                  Google
+                </a>
+                {/* YouTube */}
+                <a
+                  href="https://www.youtube.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "9px",
+                    background: "#FF0000",
+                    color: "#fff",
+                    padding: "9px 18px",
+                    borderRadius: "6px",
+                    fontWeight: 700,
+                    fontSize: "14px",
+                    textDecoration: "none",
+                    transition: "opacity 0.2s",
+                  }}
+                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
+                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                >
+                  <i className="fab fa-youtube" style={{ fontSize: "18px" }}></i>
+                  YouTube
+                </a>
+              </div>
             </div>
           </div>
 
