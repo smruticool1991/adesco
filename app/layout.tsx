@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Adesco Western Ranch Ltd. - Organic Farm Agriculture",
@@ -38,8 +40,9 @@ export default function RootLayout({
         <link rel="stylesheet" href="/assets/css/unit-test.css" />
       </head>
       <body>
+        <Header />
         {children}
-
+        <Footer />
         {/* ── Scripts (same order as index.html) ── */}
         {/* jQuery and Bootstrap must load first */}
         <Script src="/assets/js/jquery-3.6.0.min.js" strategy="beforeInteractive" />

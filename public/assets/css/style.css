@@ -2447,7 +2447,7 @@ p {
 =================================================================== */
 .breadcrumb-area {
 	padding: 150px 0;
-	padding-top: 160px;
+	padding-top: 400px;
 	position: relative;
 	z-index: 1;
 	overflow: hidden;
@@ -6501,7 +6501,7 @@ footer {
 }
 
 .footer-item .logo {
-	height: 60px;
+	height: 132px;
 }
 
 .footer-item .widget-title {
