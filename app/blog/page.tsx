@@ -3,6 +3,7 @@ import React from 'react'
 const posts = [
   {
     id: 1,
+    slug: "goat-banking-program-changing-lives-rural-alberta",
     category: "Goat Banking",
     categoryColor: "#e8f5e9",
     categoryAccent: "#2e7d32",
@@ -19,6 +20,7 @@ const posts = [
   },
   {
     id: 2,
+    slug: "preserving-heritage-seeds-why-every-variety-matters",
     category: "Cultural Seeds",
     categoryColor: "#f3e5f5",
     categoryAccent: "#6a1b9a",
@@ -35,6 +37,7 @@ const posts = [
   },
   {
     id: 3,
+    slug: "what-regenerative-agriculture-means-on-an-alberta-ranch",
     category: "Regenerative Farming",
     categoryColor: "#e3f2fd",
     categoryAccent: "#1565c0",
@@ -51,6 +54,7 @@ const posts = [
   },
   {
     id: 4,
+    slug: "backyard-flock-to-community-asset-chicken-banking-story",
     category: "Chicken Banking",
     categoryColor: "#fff8e1",
     categoryAccent: "#f57f17",
@@ -67,6 +71,7 @@ const posts = [
   },
   {
     id: 5,
+    slug: "black-farmers-fight-for-food-sovereignty-in-canada",
     category: "Food Sovereignty",
     categoryColor: "#fce4ec",
     categoryAccent: "#c62828",
@@ -83,6 +88,7 @@ const posts = [
   },
   {
     id: 6,
+    slug: "cattle-banking-building-equity-through-shared-herd-ownership",
     category: "Cattle Banking",
     categoryColor: "#e3f2fd",
     categoryAccent: "#1565c0",
@@ -213,7 +219,7 @@ export default function BlogPage() {
                 </div>
               </div>
               <a
-                href={`/blog/${featured.id}`}
+                href={`/blog/${featured.slug}`}
                 className="btn btn-theme btn-md radius animation"
               >
                 Read Full Post <i className="fas fa-arrow-right" style={{ marginLeft: "8px" }}></i>
@@ -320,7 +326,7 @@ export default function BlogPage() {
                             <span style={{ fontSize: "13px", fontWeight: 600, color: "#555" }}>{post.author}</span>
                           </div>
                           <a
-                            href={`/blog/${post.id}`}
+                            href={`/blog/${post.slug}`}
                             style={{
                               display: "inline-flex",
                               alignItems: "center",
@@ -505,7 +511,7 @@ export default function BlogPage() {
                   {recentPosts.map((post) => (
                     <a
                       key={post.id}
-                      href={`/blog/${post.id}`}
+                      href={`/blog/${post.slug}`}
                       style={{
                         display: "flex",
                         gap: "14px",

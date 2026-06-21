@@ -75,7 +75,7 @@ export default function Home() {
                 <div className="row align-center">
                   <div className="col-lg-10 offset-lg-1">
                     <div className="content">
-                      <h2 style={{color: "#347604"}}>Natural & Organic Farming by <br/> Canadian Black Farmers</h2>
+                      <h2 style={{color: "#fff"}}>Natural & Organic Farming by <br/> Canadian Black Farmers</h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
                             <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
@@ -217,7 +217,7 @@ export default function Home() {
       <div className="webinar-section">
         <style>{`
           .webinar-section {
-            background: #0b0b0b;
+            background: #49a760;
             position: relative;
             color: #fff;
             padding: 0 0 100px;
@@ -331,7 +331,7 @@ export default function Home() {
 
         <div className="webinar-curve">
           <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style={{ width: '100%', height: '60px', display: 'block' }}>
-            <path d="M0,0 Q720,55 1440,0 L1440,60 L0,60 Z" fill="#0b0b0b" />
+            <path d="M0,0 Q720,55 1440,0 L1440,60 L0,60 Z" fill="#49a760" />
           </svg>
         </div>
 

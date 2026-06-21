@@ -7,7 +7,7 @@ export default function page() {
         <div className="container">
             <div className="row">
                 <div className="col-lg-8 offset-lg-2">
-                    <h1>Contact Agrul</h1>
+                    <h1>Contact us</h1>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li><a href="#"><i className="fas fa-home"></i> Home</a></li>

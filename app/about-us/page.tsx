@@ -587,15 +587,7 @@ export default function AboutUsPage() {
                   <div className="col-lg-4 farmer-stye-one" key={member.name}>
                     <div className="farmer-style-one-item">
                       <div className="thumb">
-                        <img src={member.img} alt={member.name} />
-                        <div className="social">
-                          <i className="fas fa-share-alt"></i>
-                          <ul>
-                            <li className="facebook"><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                            <li className="twitter"><a href="#"><i className="fab fa-twitter"></i></a></li>
-                            <li className="linkedin"><a href="#"><i className="fab fa-linkedin-in"></i></a></li>
-                          </ul>
-                        </div>
+                        <img src={member.img} alt={member.name} />  
                       </div>
                       <div className="info">
                         <span>{member.role}</span>
