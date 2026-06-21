@@ -41,24 +41,24 @@ export default function Footer() {
                   <h4 className="widget-title">Recent Posts</h4>
                   <ul>
                     <li>
-                      <div className="thumb"><a href="/blog/1"><img src="/assets/img/initiatives/goat-banking.jpg" alt="Goat Banking" /></a></div>
+                      <div className="thumb"><a href="/blog/goat-banking-program-changing-lives-rural-alberta"><img src="/assets/img/initiatives/goat-banking.jpg" alt="Goat Banking" /></a></div>
                       <div className="info">
                         <div className="meta-title"><span className="post-date">June 10, 2026</span></div>
-                        <h5><a href="/blog/1">How the Goat Banking Program is Changing Lives in Rural Alberta</a></h5>
+                        <h5><a href="/blog/goat-banking-program-changing-lives-rural-alberta">How the Goat Banking Program is Changing Lives in Rural Alberta</a></h5>
                       </div>
                     </li>
                     <li>
-                      <div className="thumb"><a href="/blog/2"><img src="/assets/img/about2.webp" alt="Cultural Seeds" /></a></div>
+                      <div className="thumb"><a href="/blog/preserving-heritage-seeds-why-every-variety-matters"><img src="/assets/img/about2.webp" alt="Cultural Seeds" /></a></div>
                       <div className="info">
                         <div className="meta-title"><span className="post-date">May 28, 2026</span></div>
-                        <h5><a href="/blog/2">Preserving Heritage Seeds: Why Every Variety Matters</a></h5>
+                        <h5><a href="/blog/preserving-heritage-seeds-why-every-variety-matters">Preserving Heritage Seeds: Why Every Variety Matters</a></h5>
                       </div>
                     </li>
                     <li>
-                      <div className="thumb"><a href="/blog/3"><img src="/assets/img/journey.webp" alt="Regenerative Farming" /></a></div>
+                      <div className="thumb"><a href="/blog/what-regenerative-agriculture-means-on-an-alberta-ranch"><img src="/assets/img/journey.webp" alt="Regenerative Farming" /></a></div>
                       <div className="info">
                         <div className="meta-title"><span className="post-date">May 14, 2026</span></div>
-                        <h5><a href="/blog/3">What Regenerative Agriculture Actually Means on an Alberta Ranch</a></h5>
+                        <h5><a href="/blog/what-regenerative-agriculture-means-on-an-alberta-ranch">What Regenerative Agriculture Actually Means on an Alberta Ranch</a></h5>
                       </div>
                     </li>
                   </ul>
