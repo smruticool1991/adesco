@@ -124,7 +124,7 @@ export default function Home() {
                     <div className="product-feature-style-one">
                         <div className="info">
                             <h4 className="sub-title">Healthy Foods</h4>
-                            <h2 className="title mb-25">We’re Best Agriculture <br /> &amp; Organic Firms</h2>
+                            <h2 className="title mb-25">We are the Best Agricultural <br /> &amp; Livestock Animals Farm</h2>
                             <p>
                                 Give lady of they such they sure it. Me contained explained my education. Vulgar as hearts by garret. Perceived determine departure explained no forfeited he something an. Contrasted dissimilar get joy you instrument out reasonably. Again keeps at no meant stuff. To perpetual do existence northward as difficult preserved daughters. Continued at up to zealously necessary breakfast. Surrounded sir motionless she end literature. Gay direction neglected .
                             </p>

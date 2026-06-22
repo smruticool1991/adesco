@@ -210,7 +210,7 @@ export default function Footer() {
                   Google
                 </a>
                 {/* YouTube */}
-                <a
+                {/* <a
                   href="https://www.youtube.com/@AdescoWesternRanch"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -232,7 +232,7 @@ export default function Footer() {
                 >
                   <i className="fab fa-youtube" style={{ fontSize: "18px" }}></i>
                   YouTube
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
