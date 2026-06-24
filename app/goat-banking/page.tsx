@@ -81,7 +81,7 @@ export default function GoatBankingPage() {
       {/* ── Breadcrumb ── */}
       <div
         className="breadcrumb-area text-center shadow dark bg-fixed text-light"
-        style={{ backgroundImage: "url(/assets/img/banner/banner2.webp)" }}
+        style={{ backgroundImage: "url(/assets/img/banner/banner-goat.webp)" }}
       >
         <div className="container">
           <div className="row">

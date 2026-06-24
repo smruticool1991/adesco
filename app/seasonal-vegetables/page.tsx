@@ -167,7 +167,7 @@ export default function SeasonalVegetablesPage() {
       {/* ── Breadcrumb ── */}
       <div
         className="breadcrumb-area text-center shadow dark bg-fixed text-light"
-        style={{ backgroundImage: "url(/assets/img/banner/banner11.webp)" }}
+        style={{ backgroundImage: "url(/assets/img/banner/banner10.webp)" }}
       >
         <div className="container">
           <div className="row">

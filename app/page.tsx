@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+
+const CONTACT_URL = process.env.NODE_ENV === 'development' ? '/api/contact' : '/contact-mail.php'
 
 /* ─────────────────────────────────────────────
    HOME PAGE
@@ -19,6 +20,29 @@ const galleryItems = [
 export default function Home() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(false);
+  const [hForm, setHForm] = useState({ name: '', email: '', phone: '', message: '' });
+  const [hStatus, setHStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+
+  function hChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setHForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  async function hSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setHStatus('sending');
+    try {
+      const res = await fetch(CONTACT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(hForm),
+      });
+      if (!res.ok) throw new Error();
+      setHStatus('success');
+      setHForm({ name: '', email: '', phone: '', message: '' });
+    } catch {
+      setHStatus('error');
+    }
+  }
 
   const openLightbox = (index: number) => setLightboxIndex(index);
   const closeLightbox = () => setLightboxIndex(null);
@@ -56,10 +80,10 @@ export default function Home() {
                       <h2>We Believe in Farming with <br/> a Respect for the Land</h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
-                            <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                            <a className="btn btn-theme secondary btn-md radius animation" href="/about-us">Discover More</a>
                           </div>
                           <div className="button">
-                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="#about">Become a Farmer</a>
+                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="/contact-us">Become a Farmer</a>
                           </div>
                       </div>
                     </div>
@@ -78,10 +102,10 @@ export default function Home() {
                       <h2 style={{color: "#fff"}}>Natural & Organic Farming by <br/> Canadian Black Farmers</h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
-                            <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                            <a className="btn btn-theme secondary btn-md radius animation" href="/about-us">Discover More</a>
                           </div>
                           <div className="button">
-                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="#about">Become a Farmer</a>
+                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="/contact-us">Become a Farmer</a>
                           </div>
                       </div>
                     </div>
@@ -100,10 +124,10 @@ export default function Home() {
                       <h2 style={{color: "#fff"}}> Adesco is an Animal-Friendly <br/> Housing & Comfort Ranch </h2>
                       <div style={{display: "flex", gap: "20px", alignItems: "center", justifyContent: "center", marginTop: "20px"}}>
                           <div className="button">
-                            <a className="btn btn-theme secondary btn-md radius animation" href="#about">Discover More</a>
+                            <a className="btn btn-theme secondary btn-md radius animation" href="/about-us">Discover More</a>
                           </div>
                           <div className="button">
-                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="#about">Become a Farmer</a>
+                            <a className="btn btn-theme secondary btn-md radius animation" style={{backgroundColor: "#347604", color: "#fff"}} href="/contact-us">Become a Farmer</a>
                           </div>
                       </div>
                     </div>
@@ -359,8 +383,8 @@ export default function Home() {
                 Join us for one of four webinars on mental wellness for black farmers. Click the button to register. Next in the series.. <strong>Reclaiming the Land: Reshaping the Narrative of Black Farming.</strong>
               </p>
               <div className="webinar-actions">
-                <a href="#register" className="btn-register">Register Now</a>
-                <a href="#learn-more" className="btn-learn">Learn More</a>
+                <a href="/contact-us" className="btn-register">Register Now</a>
+                <a href="/about-us" className="btn-learn">Learn More</a>
               </div>
             </div>
           </div>
@@ -384,7 +408,7 @@ export default function Home() {
               <div className="col-lg-6 offset-lg-1">
                 <div className="right-info">
                   <p>Through workshops and partnerships with local institutions, we instruct young people and aspiring agriculturists in practical techniques and the socio-political aspects of food production, emphasizing autonomy over food systems as a cornerstone of community resilience.</p>
-                  <a className="btn btn-theme btn-md radius animation" href="/contact">Get Involved</a>
+                  <a className="btn btn-theme btn-md radius animation" href="/contact-us">Get Involved</a>
                 </div>
               </div>
             </div>
@@ -1065,6 +1089,7 @@ export default function Home() {
       <style>{`
         @keyframes lbFadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes lbImgIn { from { opacity:0; transform: scale(0.93) } to { opacity:1; transform: scale(1) } }
+        @keyframes spin { to { transform: rotate(360deg); } }
         .lb-img { animation: lbImgIn 0.3s ease; }
         .lb-backdrop {
           position: fixed; inset: 0; z-index: 99999;
@@ -1122,21 +1147,18 @@ export default function Home() {
         .lb-caption h4 { color: #fff; font-size: 20px; font-weight: 700; margin: 0; }
       `}</style>
 
-      {/* ── LIGHTBOX MODAL (portal) ── */}
-      {mounted && lightboxIndex !== null && ReactDOM.createPortal(
+      {/* ── LIGHTBOX MODAL ── */}
+      {mounted && lightboxIndex !== null && (
         <div className="lb-backdrop" onClick={closeLightbox}>
-          {/* Close */}
           <button className="lb-close-btn" onClick={(e) => { e.stopPropagation(); closeLightbox(); }} aria-label="Close">
             ✕
           </button>
 
-          {/* Prev */}
           <button className="lb-nav-btn" style={{ left: "20px" }}
             onClick={(e) => { e.stopPropagation(); prevImage(); }} aria-label="Previous">
             ‹
           </button>
 
-          {/* Image */}
           <img
             key={lightboxIndex}
             className="lb-img"
@@ -1150,22 +1172,18 @@ export default function Home() {
             }}
           />
 
-          {/* Next */}
           <button className="lb-nav-btn" style={{ right: "20px" }}
             onClick={(e) => { e.stopPropagation(); nextImage(); }} aria-label="Next">
             ›
           </button>
 
-          {/* Caption */}
           <div className="lb-caption" onClick={(e) => e.stopPropagation()}>
             <div className="lb-tag">{galleryItems[lightboxIndex].tag}</div>
             <h4>{galleryItems[lightboxIndex].title}</h4>
           </div>
 
-          {/* Counter */}
           <div className="lb-counter">{lightboxIndex + 1} / {galleryItems.length}</div>
-        </div>,
-        document.body
+        </div>
       )}
 
       {/* ── FUN FACTS ── */}
@@ -1217,46 +1235,66 @@ export default function Home() {
               <div className="contact-form-style-one mb-md-50">
                 <h5 className="sub-title">Have Questions?</h5>
                 <h2 className="heading">Send us a Massage</h2>
-                <form action="/assets/mail/contact.php" method="POST" className="contact-form">
+                <form onSubmit={hSubmit} className="contact-form-react">
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="form-group">
-                        <input className="form-control" id="name" name="name" placeholder="Name" type="text" />
-                        <span className="alert-error"></span>
+                        <input className="form-control" id="h-name" name="name" placeholder="Name" type="text"
+                          value={hForm.name} onChange={hChange} required />
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-lg-6">
                       <div className="form-group">
-                        <input className="form-control" id="email" name="email" placeholder="Email*" type="email" />
-                        <span className="alert-error"></span>
+                        <input className="form-control" id="h-email" name="email" placeholder="Email*" type="email"
+                          value={hForm.email} onChange={hChange} required />
                       </div>
                     </div>
                     <div className="col-lg-6">
                       <div className="form-group">
-                        <input className="form-control" id="phone" name="phone" placeholder="Phone" type="text" />
-                        <span className="alert-error"></span>
+                        <input className="form-control" id="h-phone" name="phone" placeholder="Phone" type="text"
+                          value={hForm.phone} onChange={hChange} />
                       </div>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-lg-12">
                       <div className="form-group comments">
-                        <textarea className="form-control" id="comments" name="comments" placeholder="Tell Us About Project *"></textarea>
+                        <textarea className="form-control" id="h-comments" name="message" placeholder="Tell Us About Project *"
+                          value={hForm.message} onChange={hChange} required></textarea>
                       </div>
                     </div>
                   </div>
                   <div className="row">
-                    <div className="col-lg-12">
-                      <button type="submit" name="submit" id="submit">
-                        <i className="fa fa-paper-plane"></i> Get in Touch
+                    <div className="col-lg-12" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                      {hStatus === 'sending' && (
+                        <span style={{
+                          width: '22px', height: '22px', flexShrink: 0,
+                          border: '3px solid rgba(255,255,255,0.3)', borderTopColor: '#fff',
+                          borderRadius: '50%', display: 'inline-block',
+                          animation: 'spin 0.7s linear infinite',
+                        }} />
+                      )}
+                      <button type="submit" disabled={hStatus === 'sending'}>
+                        <i className="fa fa-paper-plane"></i> {hStatus === 'sending' ? 'Sending…' : 'Get in Touch'}
                       </button>
                     </div>
                   </div>
-                  <div className="col-lg-12 alert-notification">
-                    <div id="message" className="alert-msg"></div>
-                  </div>
+                  {hStatus === 'success' && (
+                    <div className="col-lg-12 alert-notification" style={{ marginTop: '12px' }}>
+                      <div className="alert-msg" style={{ color: '#4caf50', fontWeight: 600 }}>
+                        ✓ Message sent successfully! We&apos;ll get back to you soon.
+                      </div>
+                    </div>
+                  )}
+                  {hStatus === 'error' && (
+                    <div className="col-lg-12 alert-notification" style={{ marginTop: '12px' }}>
+                      <div className="alert-msg" style={{ color: '#e53935', fontWeight: 600 }}>
+                        ✕ Failed to send. Please try again or email us directly.
+                      </div>
+                    </div>
+                  )}
                 </form>
               </div>
             </div>
@@ -1267,7 +1305,7 @@ export default function Home() {
                     <path d="M14.4,111.6c0,0,202.9-33.7,471.2,0c0,0-194-8.9-397.3,24.7c0,0,141.9-5.9,309.2,0" style={{ animationPlayState: "running" }}></path>
                   </svg>
                 </span></h2>
-                <p>Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing.</p>
+                <p>We'd love to hear from you! Whether you have a question about our services, need support, want to provide feedback, or discuss a business opportunity, our team is here to help.</p>
                 <ul>
                   <li className="wow fadeInUp">
                     <div className="icon"><i className="fas fa-phone-alt"></i></div>

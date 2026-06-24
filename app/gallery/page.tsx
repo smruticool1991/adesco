@@ -1,90 +1,48 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
 
-const categories = ["All", "Livestock", "Agriculture", "Community", "Harvest", "Training"] as const
-type Category = typeof categories[number]
-
-interface GalleryItem {
+interface GalleryImage {
   src: string
-  thumb: string
   title: string
-  category: Category
-  desc: string
 }
 
-const items: GalleryItem[] = [
-  // Livestock
-  { src: "/assets/img/product/product1.webp",      thumb: "/assets/img/product/product1.webp",      title: "Free-Range Chickens",       category: "Livestock",    desc: "Our antibiotic-free chicken flock raised on open pasture at Adesco Western Ranch." },
-  { src: "/assets/img/product/product2.webp",      thumb: "/assets/img/product/product2.webp",      title: "Jersey Cow Herd",           category: "Livestock",    desc: "Grass-fed dairy cattle from the Adesco Cattle Banking program." },
-  { src: "/assets/img/gallery/farm.webp",          thumb: "/assets/img/gallery/farm.webp",          title: "Farm Life",                 category: "Livestock",    desc: "A glimpse into daily life at Adesco Western Ranch in Tomahawk, Alberta." },
-  // Agriculture
-  { src: "/assets/img/product/product3.webp",      thumb: "/assets/img/product/product3.webp",      title: "Field Cultivation",         category: "Agriculture",  desc: "Regenerative field cultivation using cover cropping and minimal tillage practices." },
-  { src: "/assets/img/gallery/regenerative.webp",  thumb: "/assets/img/gallery/regenerative.webp",  title: "Regenerative Land",         category: "Agriculture",  desc: "Adesco's regenerative land stewardship restoring soil biodiversity across Alberta." },
-  { src: "/assets/img/gallery/crops.webp",         thumb: "/assets/img/gallery/crops.webp",         title: "Seasonal Crops",            category: "Agriculture",  desc: "Seasonal vegetable crops harvested at peak ripeness from our pesticide-free fields." },
-  { src: "/assets/img/about2.webp",                thumb: "/assets/img/about2.webp",                title: "Ranch Overview",            category: "Agriculture",  desc: "An overview of the Adesco Western Ranch property in Tomahawk, Parkland County." },
-  // Community
-  { src: "/assets/img/testimonial/1.jpeg",         thumb: "/assets/img/testimonial/1.jpeg",         title: "Community Gathering",       category: "Community",    desc: "Community members gathering at Adesco for a workshop and farm tour." },
-  { src: "/assets/img/about.webp",                 thumb: "/assets/img/about.webp",                 title: "Our Story",                 category: "Community",    desc: "Established in 2018, Adesco Western Ranch was founded by a young African Canadian farmer." },
-  { src: "/assets/img/journey.webp",               thumb: "/assets/img/journey.webp",               title: "Our Journey",               category: "Community",    desc: "Six years of building sustainable futures and challenging barriers in Canadian agriculture." },
-  { src: "/assets/img/blog/blog01.webp",           thumb: "/assets/img/blog/blog01.webp",           title: "Community Outreach",        category: "Community",    desc: "Adesco's community engagement programs building stronger food networks across Alberta." },
-  // Harvest
-  { src: "/assets/img/product/product4.webp",      thumb: "/assets/img/product/product4.webp",      title: "Fresh Produce",             category: "Harvest",      desc: "Freshly harvested produce packed and ready for community distribution." },
-  { src: "/assets/img/blog/blog02.webp",           thumb: "/assets/img/blog/blog02.webp",           title: "Harvest Season",            category: "Harvest",      desc: "The abundance of fall harvest at Adesco Western Ranch — root vegetables and squash." },
-  { src: "/assets/img/blog/blog03.webp",           thumb: "/assets/img/blog/blog03.webp",           title: "Market Preparation",        category: "Harvest",      desc: "Produce sorted, graded, and prepared for weekly veggie box subscriptions and markets." },
-  // Training
-  { src: "/assets/img/gallery/youth.webp",         thumb: "/assets/img/gallery/youth.webp",         title: "Youth Farm Programs",       category: "Training",     desc: "Young participants in Adesco's hands-on agricultural training and leadership programs." },
-  { src: "/assets/img/farmer.webp",                thumb: "/assets/img/farmer.webp",                title: "Farmer in the Field",       category: "Training",     desc: "Participants gain practical livestock and crop management skills through Adesco programs." },
-]
-
 const stats = [
-  { val: "100+", label: "Photos in Collection" },
   { val: "6",    label: "Years Documented" },
   { val: "5",    label: "Program Areas" },
   { val: "150+", label: "Community Members Featured" },
 ]
 
 export default function GalleryPage() {
-  const [active, setActive] = useState<Category>("All")
+  const [images, setImages] = useState<GalleryImage[]>([])
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const [mounted, setMounted] = useState(false)
 
-  useEffect(() => { setMounted(true) }, [])
+  useEffect(() => {
+    setMounted(true)
+    fetch('/gallery-manifest.json')
+      .then(r => r.json())
+      .then(data => setImages(data.images ?? []))
+      .catch(() => setImages([]))
+  }, [])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (lightboxIndex === null) return
-      if (e.key === "Escape")     closeLightbox()
-      if (e.key === "ArrowLeft")  prev()
-      if (e.key === "ArrowRight") next()
+      if (e.key === 'Escape')     setLightboxIndex(null)
+      if (e.key === 'ArrowLeft')  setLightboxIndex(i => i !== null ? (i - 1 + images.length) % images.length : null)
+      if (e.key === 'ArrowRight') setLightboxIndex(i => i !== null ? (i + 1) % images.length : null)
     }
-    window.addEventListener("keydown", onKey)
-    return () => window.removeEventListener("keydown", onKey)
-  })
-
-  const filtered = active === "All" ? items : items.filter(i => i.category === active)
-
-  const openLightbox = (index: number) => setLightboxIndex(index)
-  const closeLightbox = () => setLightboxIndex(null)
-  const prev = () => setLightboxIndex(i => i !== null ? (i - 1 + filtered.length) % filtered.length : null)
-  const next = () => setLightboxIndex(i => i !== null ? (i + 1) % filtered.length : null)
-
-  const categoryColors: Record<Category, { bg: string; text: string }> = {
-    All:         { bg: "#1a3a22", text: "#fff" },
-    Livestock:   { bg: "#1b5e20", text: "#fff" },
-    Agriculture: { bg: "#e65100", text: "#fff" },
-    Community:   { bg: "#1565c0", text: "#fff" },
-    Harvest:     { bg: "#c62828", text: "#fff" },
-    Training:    { bg: "#6a1b9a", text: "#fff" },
-  }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [images.length, lightboxIndex])
 
   return (
     <div>
       {/* ── Breadcrumb ── */}
       <div
         className="breadcrumb-area text-center shadow dark bg-fixed text-light"
-        style={{ backgroundImage: "url(/assets/img/banner/banner1.webp)" }}
+        style={{ backgroundImage: 'url(/assets/img/banner/banner14.webp)' }}
       >
         <div className="container">
           <div className="row">
@@ -122,18 +80,24 @@ export default function GalleryPage() {
       </div>
 
       {/* ── Stats Bar ── */}
-      <div style={{ background: "#1a3a22", padding: "50px 0" }}>
+      <div style={{ background: '#1a3a22', padding: '50px 0' }}>
         <div className="container">
           <div className="row text-center">
-            {stats.map((s) => (
+            <div className="col-lg-3 col-md-6">
+              <div style={{ padding: '16px 0' }}>
+                <div style={{ color: '#82c45a', fontSize: '44px', fontWeight: 800, lineHeight: 1.1 }}>
+                  {images.length || '—'}
+                </div>
+                <span style={{ color: 'rgba(255,255,255,0.70)', fontSize: '14px', display: 'block', marginTop: '6px' }}>
+                  Photos in Collection
+                </span>
+              </div>
+            </div>
+            {stats.map(s => (
               <div className="col-lg-3 col-md-6" key={s.label}>
-                <div style={{ padding: "16px 0" }}>
-                  <div style={{ color: "#82c45a", fontSize: "44px", fontWeight: 800, lineHeight: 1.1 }}>
-                    {s.val}
-                  </div>
-                  <span style={{ color: "rgba(255,255,255,0.70)", fontSize: "14px", display: "block", marginTop: "6px" }}>
-                    {s.label}
-                  </span>
+                <div style={{ padding: '16px 0' }}>
+                  <div style={{ color: '#82c45a', fontSize: '44px', fontWeight: 800, lineHeight: 1.1 }}>{s.val}</div>
+                  <span style={{ color: 'rgba(255,255,255,0.70)', fontSize: '14px', display: 'block', marginTop: '6px' }}>{s.label}</span>
                 </div>
               </div>
             ))}
@@ -141,144 +105,52 @@ export default function GalleryPage() {
         </div>
       </div>
 
-      {/* ── Filter Tabs ── */}
-      <div style={{ background: "#fff", borderBottom: "1px solid #eee", padding: "24px 0", position: "sticky", top: 0, zIndex: 50 }}>
-        <div className="container">
-          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "center" }}>
-            {categories.map((cat) => {
-              const isActive = active === cat
-              const col = categoryColors[cat]
-              return (
-                <button
-                  key={cat}
-                  onClick={() => { setActive(cat); setLightboxIndex(null) }}
-                  style={{
-                    padding: "9px 22px",
-                    borderRadius: "30px",
-                    border: `2px solid ${col.bg}`,
-                    background: isActive ? col.bg : "transparent",
-                    color: isActive ? col.text : col.bg,
-                    fontWeight: 700,
-                    fontSize: "13px",
-                    cursor: "pointer",
-                    transition: "all 0.2s",
-                    letterSpacing: "0.3px",
-                  }}
-                >
-                  {cat}
-                  <span
-                    style={{
-                      marginLeft: "7px",
-                      background: isActive ? "rgba(255,255,255,0.25)" : col.bg,
-                      color: isActive ? "#fff" : "#fff",
-                      fontSize: "11px",
-                      fontWeight: 800,
-                      padding: "1px 7px",
-                      borderRadius: "10px",
-                    }}
-                  >
-                    {cat === "All" ? items.length : items.filter(i => i.category === cat).length}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
-        </div>
-      </div>
-
       {/* ── Grid ── */}
-      <div style={{ background: "#f4f7f4", padding: "56px 0 72px" }}>
-        <div style={{ maxWidth: "1400px", margin: "0 auto", padding: "0 20px" }}>
-          {filtered.length === 0 ? (
-            <div style={{ textAlign: "center", padding: "80px 0", color: "#888" }}>
-              <i className="fas fa-images" style={{ fontSize: "48px", marginBottom: "16px", display: "block" }}></i>
-              <p>No photos in this category yet.</p>
+      <div style={{ background: '#f4f7f4', padding: '56px 0 72px' }}>
+        <div style={{ maxWidth: '1400px', margin: '0 auto', padding: '0 20px' }}>
+          {images.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '80px 0', color: '#888' }}>
+              <i className="fas fa-images" style={{ fontSize: '48px', marginBottom: '16px', display: 'block' }}></i>
+              <p>No photos yet. Upload images to <code>public/assets/img/gallery/</code> and they will appear here automatically.</p>
             </div>
           ) : (
-            <div
-              style={{
-                columns: "4 280px",
-                columnGap: "14px",
-              }}
-            >
-              {filtered.map((item, index) => (
+            <div style={{ columns: '4 260px', columnGap: '14px' }}>
+              {images.map((item, index) => (
                 <div
-                  key={`${item.src}-${index}`}
-                  onClick={() => openLightbox(index)}
+                  key={item.src}
+                  onClick={() => setLightboxIndex(index)}
                   style={{
-                    position: "relative",
-                    overflow: "hidden",
-                    borderRadius: "12px",
-                    cursor: "pointer",
-                    marginBottom: "14px",
-                    breakInside: "avoid",
-                    boxShadow: "0 4px 18px rgba(0,0,0,0.12)",
-                    display: "block",
+                    position: 'relative',
+                    overflow: 'hidden',
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    marginBottom: '14px',
+                    breakInside: 'avoid',
+                    boxShadow: '0 4px 18px rgba(0,0,0,0.12)',
+                    display: 'block',
                   }}
                 >
                   <img
-                    src={item.thumb}
+                    src={item.src}
                     alt={item.title}
-                    style={{
-                      width: "100%",
-                      display: "block",
-                      transition: "transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)",
-                    }}
+                    style={{ width: '100%', display: 'block', transition: 'transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)' }}
                   />
-                  {/* Overlay */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: "linear-gradient(to top, rgba(15,40,15,0.88) 0%, rgba(15,40,15,0.18) 55%, transparent 100%)",
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "flex-end",
-                      padding: "18px 20px",
-                      opacity: 0,
-                      transition: "opacity 0.3s",
-                    }}
-                    className="gallery-overlay"
-                  >
-                    <span
-                      style={{
-                        display: "inline-block",
-                        background: categoryColors[item.category].bg,
-                        color: "#fff",
-                        fontSize: "10px",
-                        fontWeight: 700,
-                        letterSpacing: "2px",
-                        textTransform: "uppercase",
-                        padding: "3px 10px",
-                        borderRadius: "20px",
-                        marginBottom: "7px",
-                        width: "fit-content",
-                      }}
-                    >
-                      {item.category}
-                    </span>
-                    <h4 style={{ color: "#fff", fontSize: "15px", fontWeight: 700, margin: 0 }}>{item.title}</h4>
+                  <div className="gallery-overlay" style={{
+                    position: 'absolute', inset: 0,
+                    background: 'linear-gradient(to top, rgba(15,40,15,0.88) 0%, rgba(15,40,15,0.18) 55%, transparent 100%)',
+                    display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
+                    padding: '18px 20px', opacity: 0, transition: 'opacity 0.3s',
+                  }}>
+                    <h4 style={{ color: '#fff', fontSize: '15px', fontWeight: 700, margin: 0 }}>{item.title}</h4>
                   </div>
-                  {/* Expand icon */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      right: "12px",
-                      width: "34px",
-                      height: "34px",
-                      borderRadius: "50%",
-                      background: "rgba(255,255,255,0.90)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      opacity: 0,
-                      transition: "opacity 0.3s, transform 0.3s",
-                      transform: "scale(0.7)",
-                    }}
-                    className="gallery-expand"
-                  >
-                    <i className="fas fa-expand-alt" style={{ color: "#1a3a22", fontSize: "13px" }}></i>
+                  <div className="gallery-expand" style={{
+                    position: 'absolute', top: '12px', right: '12px',
+                    width: '34px', height: '34px', borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.90)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    opacity: 0, transition: 'opacity 0.3s, transform 0.3s', transform: 'scale(0.7)',
+                  }}>
+                    <i className="fas fa-expand-alt" style={{ color: '#1a3a22', fontSize: '13px' }}></i>
                   </div>
                 </div>
               ))}
@@ -333,48 +205,37 @@ export default function GalleryPage() {
           position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
           text-align: center; z-index: 100000; white-space: nowrap; max-width: 90vw;
         }
-        .lb-caption .lb-cat {
-          display: inline-block; color: #fff; font-size: 11px; font-weight: 700;
-          letter-spacing: 2px; text-transform: uppercase;
-          padding: 3px 12px; border-radius: 20px; margin-bottom: 5px;
-        }
-        .lb-caption h4 { color: #fff; font-size: 18px; font-weight: 700; margin: 0 0 4px; }
-        .lb-caption p  { color: rgba(255,255,255,0.65); font-size: 13px; margin: 0; }
+        .lb-caption h4 { color: #fff; font-size: 18px; font-weight: 700; margin: 0; }
       `}</style>
 
-      {/* ── Lightbox Portal ── */}
-      {mounted && lightboxIndex !== null && ReactDOM.createPortal(
-        <div className="lb-backdrop" onClick={closeLightbox}>
-          <button className="lb-close-btn" onClick={e => { e.stopPropagation(); closeLightbox() }} aria-label="Close">✕</button>
+      {/* ── Lightbox ── */}
+      {mounted && lightboxIndex !== null && (
+        <div className="lb-backdrop" onClick={() => setLightboxIndex(null)}>
+          <button className="lb-close-btn" onClick={e => { e.stopPropagation(); setLightboxIndex(null) }} aria-label="Close">✕</button>
 
-          <button className="lb-nav-btn" style={{ left: "20px" }} onClick={e => { e.stopPropagation(); prev() }} aria-label="Previous">‹</button>
+          <button className="lb-nav-btn" style={{ left: '20px' }}
+            onClick={e => { e.stopPropagation(); setLightboxIndex(i => i !== null ? (i - 1 + images.length) % images.length : null) }}
+            aria-label="Previous">‹</button>
 
           <img
             key={lightboxIndex}
             className="lb-img"
-            src={filtered[lightboxIndex].src}
-            alt={filtered[lightboxIndex].title}
+            src={images[lightboxIndex].src}
+            alt={images[lightboxIndex].title}
             onClick={e => e.stopPropagation()}
-            style={{
-              maxWidth: "90vw", maxHeight: "80vh",
-              objectFit: "contain", borderRadius: "10px",
-              boxShadow: "0 20px 80px rgba(0,0,0,0.6)",
-            }}
+            style={{ maxWidth: '90vw', maxHeight: '80vh', objectFit: 'contain', borderRadius: '10px', boxShadow: '0 20px 80px rgba(0,0,0,0.6)' }}
           />
 
-          <button className="lb-nav-btn" style={{ right: "20px" }} onClick={e => { e.stopPropagation(); next() }} aria-label="Next">›</button>
+          <button className="lb-nav-btn" style={{ right: '20px' }}
+            onClick={e => { e.stopPropagation(); setLightboxIndex(i => i !== null ? (i + 1) % images.length : null) }}
+            aria-label="Next">›</button>
 
           <div className="lb-caption" onClick={e => e.stopPropagation()}>
-            <div className="lb-cat" style={{ background: categoryColors[filtered[lightboxIndex].category].bg }}>
-              {filtered[lightboxIndex].category}
-            </div>
-            <h4>{filtered[lightboxIndex].title}</h4>
-            <p>{filtered[lightboxIndex].desc}</p>
+            <h4>{images[lightboxIndex].title}</h4>
           </div>
 
-          <div className="lb-counter">{lightboxIndex + 1} / {filtered.length}</div>
-        </div>,
-        document.body
+          <div className="lb-counter">{lightboxIndex + 1} / {images.length}</div>
+        </div>
       )}
     </div>
   )

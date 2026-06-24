@@ -87,7 +87,7 @@ export default function BrandsPage() {
       {/* ── Breadcrumb ── */}
       <div
         className="breadcrumb-area text-center shadow dark bg-fixed text-light"
-        style={{ backgroundImage: "url(/assets/img/banner/banner1.webp)" }}
+        style={{ backgroundImage: "url(/assets/img/banner/brands.webp)" }}
       >
         <div className="container">
           <div className="row">

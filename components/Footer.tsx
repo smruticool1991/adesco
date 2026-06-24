@@ -13,7 +13,12 @@ export default function Footer() {
               <div className="col-lg-4 col-md-6 item">
                 <div className="footer-item about">
                   <img className="logo" src="/assets/img/logo-light2.png" alt="Logo" />
-                  <p>Happen active county. Winding morning ambition shyness evident to poor. Because elderly new to the point to main success.</p>
+                  <p>
+                    Established in 2018 in the close-knit hamlet of Tomahawk, Parkland County, Alberta, Adesco Western Ranch was founded by Timothy Adekola.
+                  </p>
+                  <a href="/about-us" className="btn btn-sm btn-light mt-2" style={{ borderRadius: "4px", fontWeight: 600 }}>
+                    Read More
+                  </a>
                   {/* <form action="#">
                     <input type="email" placeholder="Your Email" className="form-control" name="email" />
                     <button type="submit"> Go</button>
@@ -243,7 +248,7 @@ export default function Footer() {
                 <p>&copy; Copyright Adesco Western Ranch Ltd. 2026. All right reserved.</p>
               </div>
               <div className="col-lg-6 text-end">
-                <p>Developed by <span style={{color: "#e74c3c"}}><a href="https://baninfotech.com" target="_blank" rel="noopener noreferrer" style={{color: "#e74c3c"}}>Ban-infotech Solutions</a></span></p>
+                <p>Developed by <span style={{color: "#e74c3c"}}><a href="#" rel="noopener noreferrer" style={{color: "#e74c3c"}}>Ban-infotech Solutions</a></span></p>
               </div>
             </div>
           </div>

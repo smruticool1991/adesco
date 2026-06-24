@@ -1,0 +1,18 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+DirectoryIndex index.html
+
+# Serve existing files/directories directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Try appending /index.html for directory-style routes (trailingSlash: true)
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+RewriteRule ^(.+[^/])$ $1/ [R=301,L]
+
+# Fallback: try .html extension
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ $1.html [L,QSA]

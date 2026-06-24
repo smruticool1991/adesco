@@ -105,7 +105,7 @@ export default function CattleBankingPage() {
       {/* ── Breadcrumb ── */}
       <div
         className="breadcrumb-area text-center shadow dark bg-fixed text-light"
-        style={{ backgroundImage: "url(/assets/img/banner/banner03.webp)" }}
+        style={{ backgroundImage: "url(/assets/img/banner/banner-cattle.webp)" }}
       >
         <div className="container">
           <div className="row">
